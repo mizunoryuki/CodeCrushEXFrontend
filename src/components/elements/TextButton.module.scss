@@ -1,13 +1,22 @@
-@import "@/styles/variables/colors.scss";
+@import "@/styles/variables/Colors.scss";
+@import "@/styles/variables/Typography.scss";
 
 .button {
-  padding: 30px 4px;
+  padding: 4px 30px;
   background-color: var(--color-white);
   display: flex;
   border-radius: 100px;
+  width: fit-content;
+  font-size: var(--font-size-20);
+  font-weight: bold;
   color: var(--color-medium-gray);
+  box-shadow: 0 0 20px #000000;
   align-content: center;
   justify-content: center;
+  transition: 100ms;
+  &:active {
+    transform: scale(0.98);
+  }
 }
 
 .button-blue {

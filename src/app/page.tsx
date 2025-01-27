@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <div className={styles.page}>
       <main className={styles.main}>
-        <TextButton color="yellow">あいうえお</TextButton>
+        <TextButton color="blue">あいうえお</TextButton>
         <Image
           className={styles.logo}
           src="/next.svg"

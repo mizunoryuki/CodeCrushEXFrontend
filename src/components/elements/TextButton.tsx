@@ -1,14 +1,23 @@
 import React, { ReactNode } from "react";
-import "./TextButton.scss";
+import styles from "./TextButton.module.scss";
 
 type TextButtonProps = {
   color?: "blue" | "green" | "yellow" | "orange" | "red" | "gray";
   children: ReactNode;
+  onClick?: () => void;
 };
 
 export const TextButton: React.FC<TextButtonProps> = ({
   color = "gray",
   children,
+  onClick,
 }) => {
-  return <button className={`button button-${color}`}>{children}</button>;
+  return (
+    <button
+      className={`${styles.button} ${styles[`button-${color}`]}`}
+      onClick={onClick}
+    >
+      {children}
+    </button>
+  );
 };
