@@ -1,0 +1,29 @@
+.phaseBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 7rem;
+    height: 7rem;
+    box-sizing: border-box;
+    border-radius: 30px;
+}
+.phaseRead {
+    border: 6.81px solid #ffc80b;
+    background-color: #fff6d6;
+}
+.phaseDelete {
+    border: 6.81px solid #e54671;
+    background-color: #ffe3e3;
+}
+.phaseFix {
+    border: 6.81px solid #2ada6e;
+    background-color: #e8fde7;
+}
+.phaseAnswer {
+    border: 6.81px solid #41bcff;
+    background-color: #f1fafd;
+}
+
+.phaseOff {
+    background-color: #dbe2e7;
+}

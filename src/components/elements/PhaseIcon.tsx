@@ -1,20 +1,113 @@
-export const PhaseIcon = () => {
+import styles from "./PhaseIcon.module.scss";
+
+interface Props {
+    phase: "read" | "delete" | "fix" | "answer";
+    isOn: boolean;
+}
+
+interface IconProps {
+    state: boolean;
+}
+
+export const PhaseIcon = ({ phase, isOn }: Props) => {
     return (
-        <div>
+        <div
+            className={`${styles.phaseBox} ${
+                isOn === false
+                    ? styles.phaseOff
+                    : phase === "read"
+                    ? styles.phaseRead
+                    : phase === "delete"
+                    ? styles.phaseDelete
+                    : phase === "fix"
+                    ? styles.phaseFix
+                    : phase === "answer"
+                    ? styles.phaseAnswer
+                    : ""
+            }`}
+        >
+            {phase === "read" ? <Read state={isOn} /> : null}
+            {phase === "delete" ? <Delete state={isOn} /> : null}
+            {phase === "fix" ? <Fix state={isOn} /> : null}
+            {phase === "answer" ? <Answer state={isOn} /> : null}
+        </div>
+    );
+};
+
+const Read = ({ state }: IconProps) => {
+    return (
+        <>
             <svg
                 xmlns="http://www.w3.org/2000/svg"
-                fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
-                stroke="currentColor"
-                className="size-6"
+                stroke={state ? "#FFC80B" : "#C7D2DB"}
+                width="60%"
+                height="60%"
             >
-                <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"
-                />
+                <g fill={state ? "#FFC80B" : "#C7D2DB"}>
+                    <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"
+                    />
+                </g>
             </svg>
-        </div>
+        </>
+    );
+};
+
+const Delete = ({ state }: IconProps) => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            width="50%"
+            height="50%"
+        >
+            <path
+                fill={state ? "#E54671" : "#C7D2DB"}
+                d="M17.25 18H22v2h-6.75zm-12.5 2l-2.125-2.125q-.575-.575-.587-1.425T2.6 15l11-11.4q.575-.6 1.413-.6t1.412.575L21.4 8.55q.575.575.575 1.425T21.4 11.4L13 20z"
+            />
+        </svg>
+    );
+};
+
+const Fix = ({ state }: IconProps) => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            width="50%"
+            height="50%"
+        >
+            <path
+                fill={state ? "#2ADA6E" : "#C7D2DB"}
+                d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32L19.513 8.2Z"
+            />
+        </svg>
+    );
+};
+
+const Answer = ({ state }: IconProps) => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            width="50%"
+            height="50%"
+        >
+            <g fill={state ? "#41BCFF" : "#C7D2DB"}>
+                <path
+                    fillRule="evenodd"
+                    d="M9 1.5H5.625c-1.036 0-1.875.84-1.875 1.875v17.25c0 1.035.84 1.875 1.875 1.875h12.75c1.035 0 1.875-.84 1.875-1.875V12.75A3.75 3.75 0 0 0 16.5 9h-1.875a1.875 1.875 0 0 1-1.875-1.875V5.25A3.75 3.75 0 0 0 9 1.5m6.61 10.936a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 14.47a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094z"
+                    clipRule="evenodd"
+                ></path>
+                <path d="M12.971 1.816A5.23 5.23 0 0 1 14.25 5.25v1.875c0 .207.168.375.375.375H16.5a5.23 5.23 0 0 1 3.434 1.279a9.77 9.77 0 0 0-6.963-6.963"></path>
+            </g>
+        </svg>
     );
 };
