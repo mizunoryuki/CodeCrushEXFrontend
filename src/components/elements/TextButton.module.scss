@@ -1,5 +1,6 @@
 @import "@/styles/variables/Colors.scss";
 @import "@/styles/variables/Typography.scss";
+@import "@/styles/variables/Shadows.scss";
 
 .button {
   padding: 4px 30px;
@@ -10,12 +11,13 @@
   font-size: var(--font-size-20);
   font-weight: bold;
   color: var(--color-medium-gray);
-  box-shadow: 0 0 20px #000000;
+  box-shadow: var(--shadow-normal);
   align-content: center;
   justify-content: center;
   transition: 100ms;
   &:active {
     transform: scale(0.98);
+    box-shadow: none;
   }
 }
 
