@@ -1,10 +1,12 @@
 import Image from "next/image";
 import styles from "./page.module.css";
+import { TextButton } from "@/components/elements/TextButton";
 
 export default function Home() {
   return (
     <div className={styles.page}>
       <main className={styles.main}>
+        <TextButton color="yellow">あいうえお</TextButton>
         <Image
           className={styles.logo}
           src="/next.svg"
