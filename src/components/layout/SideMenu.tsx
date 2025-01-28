@@ -21,7 +21,7 @@ export const SideMenu = ({ isOpen, setIsOpen }: Props) => {
             >
                 {/* 開けたり閉じたりするボタン */}
                 <button
-                    className={styles.modalButtonClose}
+                    className={styles.modalButton}
                     onClick={() => {
                         setIsOpen(!isOpen);
                     }}

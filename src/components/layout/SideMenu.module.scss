@@ -22,20 +22,26 @@
     z-index: 1001;
 }
 
-.modalButtonClose {
-    margin-top: 14px;
+.modalButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 60px;
     height: 60px;
     border-radius: 37px;
     background-color: var(--color-white);
-}
+    box-shadow: var(--shadow-normal);
+    border: none;
 
-.modalButtonClose:active {
-    background-color: var(--color-gray);
-}
+    &:active {
+        transform: scale(0.9);
+        transition: 0.5s;
+        box-shadow: none;
+    }
 
-.modalButtonClose:active svg path {
-    stroke: var(--color-medium-gray);
+    &:active svg path {
+        stroke: var(--color-medium-gray);
+    }
 }
 
 .modalBox {
@@ -44,6 +50,7 @@
     height: 100%;
     border-radius: 30px;
     background-color: var(--color-white);
+    box-shadow: var(--shadow-normal);
 }
 
 .modalBoxElem {
