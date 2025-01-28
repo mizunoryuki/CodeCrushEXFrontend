@@ -34,7 +34,7 @@ export const SideMenu = ({ isOpen, setIsOpen }: Props) => {
                             strokeWidth={3}
                         >
                             <path
-                                stroke="#CED7DD"
+                                stroke="var(--color-light-blue)"
                                 strokeLinecap="round"
                                 strokeLinejoin="round"
                                 d="M18 6L6 18M6 6l12 12"
@@ -48,13 +48,14 @@ export const SideMenu = ({ isOpen, setIsOpen }: Props) => {
                             viewBox="0 0 16 16"
                         >
                             <path
-                                fill="#CED7DD"
+                                fill="var(--color-light-blue)"
                                 fillRule="evenodd"
                                 d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"
                             />
                         </svg>
                     )}
                 </button>
+                {/* サイドバーのメイン部分 */}
                 <div
                     className={styles.modalBox}
                     style={{
@@ -65,7 +66,7 @@ export const SideMenu = ({ isOpen, setIsOpen }: Props) => {
                         <Image
                             aria-hidden
                             src="/logo.svg"
-                            alt="Window icon"
+                            alt="logo icon"
                             width={220}
                             height={45}
                         />
