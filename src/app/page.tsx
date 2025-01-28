@@ -2,6 +2,7 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import { TextButton } from "@/components/elements/TextButton";
 import { Input } from "@/components/elements/Input";
+import { PhaseIcon } from "@/components/elements/PhaseIcon";
 
 export default function Home() {
     return (
@@ -93,6 +94,18 @@ export default function Home() {
                 </a>
             </footer>
             <Input placeholder={"あいことばを入力"} iconUrl={1} />
+            <div
+                style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    gap: "30px",
+                }}
+            >
+                <PhaseIcon phase="read" isOn={true} />
+                <PhaseIcon phase="delete" isOn={true} />
+                <PhaseIcon phase="fix" isOn={true} />
+                <PhaseIcon phase="answer" isOn={true} />
+            </div>
         </div>
     );
 }

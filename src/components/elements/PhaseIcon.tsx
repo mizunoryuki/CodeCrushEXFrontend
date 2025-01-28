@@ -41,7 +41,7 @@ const Read = ({ state }: IconProps) => {
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
-                stroke={state ? "#FFC80B" : "#C7D2DB"}
+                stroke={state ? "var(--color-yellow)" : "#C7D2DB"}
                 width="60%"
                 height="60%"
             >

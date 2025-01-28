@@ -1,6 +1,6 @@
-@import "../../styles/variables/colors.scss";
-@import "../../styles/variables/Typography.scss";
-@import "../../styles/variables/Shadows.scss";
+@use "@/styles/variables/colors.scss";
+@use "@/styles/variables/Typography.scss";
+@use "@/styles/variables/Shadows.scss";
 
 .button {
     padding: 4px 30px;
