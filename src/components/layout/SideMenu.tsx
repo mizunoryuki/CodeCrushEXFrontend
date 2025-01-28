@@ -1,3 +1,4 @@
+import Image from "next/image";
 import styles from "./SideMenu.module.scss";
 import { Dispatch, SetStateAction } from "react";
 
@@ -8,8 +9,8 @@ type Props = {
 
 export const SideMenu = ({ isOpen, setIsOpen }: Props) => {
     return (
-        <div className={styles.sideMenuWrapper}>
-            {/* 背景の透かし */}
+        <div>
+            {/* 背景の透かすための要素 */}
             {isOpen && <div className={styles.overlay}></div>}
 
             <div
@@ -17,6 +18,7 @@ export const SideMenu = ({ isOpen, setIsOpen }: Props) => {
                     isOpen ? styles.animatedText : ""
                 }`}
             >
+                {/* 開けたり閉じたりするボタン */}
                 <button
                     className={styles.modalButtonClose}
                     onClick={() => {
@@ -60,7 +62,13 @@ export const SideMenu = ({ isOpen, setIsOpen }: Props) => {
                     }}
                 >
                     <div className={styles.modalBoxElem}>
-                        <h1>ロゴ</h1>
+                        <Image
+                            aria-hidden
+                            src="/logo.svg"
+                            alt="Window icon"
+                            width={220}
+                            height={45}
+                        />
                         <h2
                             style={{
                                 color: "var(--color-yellow)",
