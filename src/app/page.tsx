@@ -1,26 +1,28 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import { TextButton } from "@/components/elements/TextButton";
+import { Input } from "@/components/elements/Input";
+import { PhaseIcon } from "@/components/elements/PhaseIcon";
 
 export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <TextButton color="blue">あいうえお</TextButton>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    return (
+        <div className={styles.page}>
+            <main className={styles.main}>
+                <TextButton color="blue">あいうえお</TextButton>
+                <Image
+                    className={styles.logo}
+                    src="/next.svg"
+                    alt="Next.js logo"
+                    width={180}
+                    height={38}
+                    priority
+                />
+                <ol>
+                    <li>
+                        Get started by editing <code>src/app/page.tsx</code>.
+                    </li>
+                    <li>Save and see your changes instantly.</li>
+                </ol>
                 <div className={styles.ctas}>
                     <a
                         className={styles.primary}
@@ -92,6 +94,18 @@ export default function Home() {
                 </a>
             </footer>
             <Input placeholder={"あいことばを入力"} iconUrl={1} />
+            <div
+                style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    gap: "30px",
+                }}
+            >
+                <PhaseIcon phase="read" isOn={true} />
+                <PhaseIcon phase="delete" isOn={true} />
+                <PhaseIcon phase="fix" isOn={true} />
+                <PhaseIcon phase="answer" isOn={true} />
+            </div>
         </div>
     );
 }

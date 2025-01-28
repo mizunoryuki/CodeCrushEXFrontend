@@ -1,0 +1,29 @@
+@use "@/styles/variables/colors.scss";
+.phaseBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 7rem;
+    height: 7rem;
+    box-sizing: border-box;
+    border-radius: 27.25px;
+}
+.phaseRead {
+    border: 6.81px solid var(--color-yellow);
+    background-color: var(--color-yellow-light);
+}
+.phaseDelete {
+    border: 6.81px solid var(--color-red);
+    background-color: var(--color-red-light);
+}
+.phaseFix {
+    border: 6.81px solid var(--color-green);
+    background-color: var(--color-green-light);
+}
+.phaseAnswer {
+    border: 6.81px solid var(--color-blue);
+    background-color: var(--color-blue-light);
+}
+.phaseOff {
+    background-color: var(--color-gray);
+}
