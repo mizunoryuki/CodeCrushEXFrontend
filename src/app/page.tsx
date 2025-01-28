@@ -2,6 +2,7 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import { TextButton } from "@/components/elements/TextButton";
 import { Input } from "@/components/elements/Input";
+
 import { IconButton } from "@/components/elements/IconButton";
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
           url="https://api.iconify.design/ri:file-list-line.svg?color=%23ffffff"
           color="gray"
         />
+        <Input placeholder={"あいことばを入力"} iconUrl={1} />
         <Image
           className={styles.logo}
           src="/next.svg"
