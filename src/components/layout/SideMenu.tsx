@@ -1,6 +1,7 @@
 import Image from "next/image";
 import styles from "./SideMenu.module.scss";
 import { Dispatch, SetStateAction } from "react";
+import Link from "next/link";
 
 type Props = {
     isOpen: boolean;
@@ -70,20 +71,24 @@ export const SideMenu = ({ isOpen, setIsOpen }: Props) => {
                             width={220}
                             height={45}
                         />
-                        <h2
+                        <Link
+                            href="/"
                             style={{
                                 color: "var(--color-yellow)",
+                                fontSize: "24px",
                             }}
                         >
                             タイトルに戻る
-                        </h2>
-                        <h2
+                        </Link>
+                        <Link
+                            href="/"
                             style={{
                                 color: "var(--color-red)",
+                                fontSize: "24px",
                             }}
                         >
                             ゲームを終了
-                        </h2>
+                        </Link>
                     </div>
                 </div>
             </div>
