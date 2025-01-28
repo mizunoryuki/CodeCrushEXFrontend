@@ -8,14 +8,10 @@ type Props = {
 
 export const SideMenu = ({ isOpen, setIsOpen }: Props) => {
     return (
-        <div
-            className={styles.modalOpen}
-            style={{
-                backgroundColor: isOpen ? "black" : "",
-                opacity: isOpen ? "0.4" : "",
-            }}
-        >
-            {/* 要素を右側に配置する */}
+        <div className={styles.sideMenuWrapper}>
+            {/* 背景の透かし */}
+            {isOpen && <div className={styles.overlay}></div>}
+
             <div
                 className={`${styles.modalOpenElem} ${
                     isOpen ? styles.animatedText : ""
@@ -65,8 +61,20 @@ export const SideMenu = ({ isOpen, setIsOpen }: Props) => {
                 >
                     <div className={styles.modalBoxElem}>
                         <h1>ロゴ</h1>
-                        <h2>タイトルに戻る</h2>
-                        <h2>ゲームを終了</h2>
+                        <h2
+                            style={{
+                                color: "var(--color-yellow)",
+                            }}
+                        >
+                            タイトルに戻る
+                        </h2>
+                        <h2
+                            style={{
+                                color: "var(--color-red)",
+                            }}
+                        >
+                            ゲームを終了
+                        </h2>
                     </div>
                 </div>
             </div>

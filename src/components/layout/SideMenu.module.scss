@@ -1,39 +1,58 @@
-.modalOpen {
+.sideMenuWrapper {
+    position: fixed;
     width: 100vw;
     height: 100vh;
-    position: fixed;
     top: 0;
     left: 0;
+    z-index: 1000;
+}
+
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.4;
+    top: 0;
+    left: 0;
+    z-index: 999;
 }
 
 .modalOpenElem {
     position: fixed;
-    top: 2%;
-    right: 2%;
+    top: 30px;
+    right: 18px;
     display: flex;
     flex-direction: row;
     justify-content: end;
     gap: 15px;
-    width: 340px;
-    height: calc(100vh - 4%);
+    width: auto;
+    height: calc(100vh - 60px);
+    z-index: 1001;
 }
 
 .modalButtonClose {
-    margin-top: 10px;
+    margin-top: 14px;
     width: 60px;
     height: 60px;
     border-radius: 37px;
-    background-color: #ffffff;
+    background-color: var(--color-white);
+}
+
+.modalButtonClose:active {
+    background-color: var(--color-gray);
+}
+
+.modalButtonClose:active svg path {
+    stroke: var(--color-medium-gray);
 }
 
 .modalBox {
-    padding: 3%;
-    color: black;
-    flex-grow: 1;
-    border-radius: 30px;
-    background-color: white;
+    padding: 14px 16px;
+    width: 294px;
     height: 100%;
-    width: 60%;
+    border-radius: 30px;
+    background-color: var(--color-white);
 }
 
 .modalBoxElem {
