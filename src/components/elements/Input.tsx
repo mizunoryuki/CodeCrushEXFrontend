@@ -2,7 +2,7 @@ import styles from "./Input.module.scss";
 
 interface Props {
     placeholder: string;
-    iconUrl: number;
+    iconUrl: string;
 }
 export const Input = ({ placeholder, iconUrl }: Props) => {
     return (
