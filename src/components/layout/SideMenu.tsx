@@ -16,7 +16,7 @@ export const SideMenu = ({ isOpen, setIsOpen }: Props) => {
 
             <div
                 className={`${styles.modalOpenElem} ${
-                    isOpen ? styles.animatedText : ""
+                    isOpen ? styles.animatedOpen : styles.animatedClose
                 }`}
             >
                 {/* 開けたり閉じたりするボタン */}
@@ -57,12 +57,7 @@ export const SideMenu = ({ isOpen, setIsOpen }: Props) => {
                     )}
                 </button>
                 {/* サイドバーのメイン部分 */}
-                <div
-                    className={styles.modalBox}
-                    style={{
-                        display: isOpen ? "block" : "none",
-                    }}
-                >
+                <div className={styles.modalBox}>
                     <div className={styles.modalBoxElem}>
                         <Image
                             aria-hidden

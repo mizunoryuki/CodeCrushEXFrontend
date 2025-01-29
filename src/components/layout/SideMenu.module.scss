@@ -5,21 +5,21 @@
     background-color: #000000;
     opacity: 0.4;
     top: 0;
-    left: 0;
+    right: 0;
     z-index: 999;
 }
 
 .modalOpenElem {
     position: fixed;
     top: 30px;
-    right: 18px;
+    right: -294px;
     display: flex;
     flex-direction: row;
     justify-content: end;
     gap: 15px;
     width: auto;
     height: calc(100vh - 60px);
-    z-index: 1001;
+    z-index: 1000;
 }
 
 .modalButton {
@@ -32,6 +32,7 @@
     background-color: var(--color-white);
     box-shadow: var(--shadow-normal);
     border: none;
+    box-sizing: border-box;
 }
 
 .modalBox {
@@ -52,15 +53,12 @@
     gap: 30px;
 }
 
-.animatedText {
-    animation: fadeIn 0.2s ease-in;
+.animatedOpen {
+    transition: 0.3s ease-out;
+    right: 16px;
 }
 
-@keyframes fadeIn {
-    from {
-        transform: translateX(600px);
-    }
-    to {
-        transform: translateX(0);
-    }
+.animatedClose {
+    transition: 0.3s ease-out;
+    right: -294px;
 }
