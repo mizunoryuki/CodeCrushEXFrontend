@@ -1,0 +1,19 @@
+.text {
+    font-size: 24px;
+    color: var(--color-medium-gray);
+    font-weight: 600;
+}
+
+.watchword {
+    font-size: var(--font-size-64);
+    color: var(--color-yellow);
+    margin-bottom: 44px;
+}
+
+.copytext {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+}
