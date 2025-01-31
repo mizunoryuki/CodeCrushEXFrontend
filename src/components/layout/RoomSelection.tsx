@@ -2,7 +2,7 @@ import { TextButton } from "../elements/TextButton";
 import styles from "../../app/matching/page.module.scss";
 import roomselection from "../../components/layout/RoomSelection.module.scss";
 import { useSetAtom } from "jotai";
-import { MachingStatusAtom } from "@/app/atoms/matchingStore";
+import { MachingStatusAtom } from "@/atoms/matchingStore";
 
 export const RoomSelection = () => {
     const setMatchingStatus = useSetAtom(MachingStatusAtom);

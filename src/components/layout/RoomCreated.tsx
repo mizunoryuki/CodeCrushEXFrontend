@@ -2,7 +2,7 @@ import { TextButton } from "../elements/TextButton";
 import roomcreated from "../layout/RoomCreated.module.scss";
 import matching from "../../app/matching/page.module.scss";
 import { useAtomValue } from "jotai";
-import { watchWordAtom } from "@/app/atoms/matchingStore";
+import { watchWordAtom } from "@/atoms/matchingStore";
 export const RoomCreated = () => {
     const watchWord = useAtomValue(watchWordAtom);
 
