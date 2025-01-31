@@ -1,6 +1,7 @@
 import { atomWithStorage } from "jotai/utils";
 
 export const timeAtom = atomWithStorage("time", {
-  time: 600,
+  minutes: 1,
+  seconds: 0,
   isRunning: true,
 });
