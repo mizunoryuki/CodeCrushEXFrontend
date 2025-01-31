@@ -10,10 +10,10 @@ export const RoomCreated = () => {
     const copyWatchword = () => {
         navigator.clipboard.writeText(`${watchWord}`).then(
             () => {
-                console.log("クリップボードにコピーしました");
+                console.log("コピー成功");
             },
             () => {
-                console.log("コピーに失敗しました");
+                console.log("コピー失敗");
             }
         );
     };
