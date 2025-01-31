@@ -4,6 +4,7 @@ import { TextButton } from "@/components/elements/TextButton";
 import { Input } from "@/components/elements/Input";
 
 import { IconButton } from "@/components/elements/IconButton";
+import { Timer } from "@/components/elements/layout/left/Timer";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
           color="gray"
         />
         <Input placeholder={"あいことばを入力"} iconUrl={1} />
+        <Timer />
         <Image
           className={styles.logo}
           src="/next.svg"
