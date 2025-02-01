@@ -1,26 +1,16 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useAtom } from "jotai";
 import { useTimer } from "react-timer-hook";
 import { timeAtom } from "@/atoms/timeAtom";
 import { useHydrateAtoms } from "jotai/utils";
 
 export const usePhaseTimer = () => {
-  const [initialTime, setInitialTime] = useState({
-    minutes: 6,
-    seconds: 0,
-    isRunning: true,
-  });
+  const storedTime = JSON.parse(
+    localStorage.getItem("timeState") ??
+      '{"minutes": 5, "seconds": 0, "isRunning": true}'
+  );
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const storedTime = localStorage.getItem("time");
-      if (storedTime) {
-        setInitialTime(JSON.parse(storedTime));
-      }
-    }
-  }, []);
-
-  useHydrateAtoms([[timeAtom, initialTime]]);
+  useHydrateAtoms([[timeAtom, storedTime]]);
   const [storageTime, setStorageTime] = useAtom(timeAtom);
 
   const time = new Date();
@@ -49,13 +39,6 @@ export const usePhaseTimer = () => {
         seconds: seconds,
         isRunning: isRunning,
       });
-    }
-
-    if (typeof window !== "undefined") {
-      localStorage.setItem(
-        "time",
-        JSON.stringify({ minutes, seconds, isRunning })
-      );
     }
   }, [minutes, seconds, isRunning, setStorageTime]);
 
