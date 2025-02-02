@@ -7,10 +7,15 @@ import { useState } from "react";
 type Watchword = string | number;
 
 export const JoinRoom = () => {
-    const [watchwordToJoin, setWatchwordToJoin] = useState<Watchword>("aiueo");
-
+    const [watchwordToJoin, setWatchwordToJoin] = useState<Watchword>("");
+    //あいことばを変更するための関数
     const handleChange = (value: Watchword) => {
         setWatchwordToJoin(value);
+    };
+
+    //参加ボタン押した時に発火する関数
+    const handleClick = () => {
+        console.log(watchwordToJoin);
     };
     return (
         <div className={`${styles.contentBox} ${joinRoom.joinBox}`}>
@@ -26,8 +31,9 @@ export const JoinRoom = () => {
                     onChange={handleChange}
                 />
             </div>
-            <TextButton color="green">参加</TextButton>
-            <p>{watchwordToJoin}</p>
+            <TextButton color="green" onClick={handleClick}>
+                参加
+            </TextButton>
         </div>
     );
 };

@@ -3,7 +3,7 @@ import styles from "./Input.module.scss";
 interface Props {
     placeholder: string;
     iconUrl: string;
-    onChange: (value: string | number) => void;
+    onChange?: (value: string | number) => void;
 }
 export const Input = ({ placeholder, iconUrl, onChange }: Props) => {
     return (
@@ -11,7 +11,7 @@ export const Input = ({ placeholder, iconUrl, onChange }: Props) => {
             <input
                 placeholder={placeholder}
                 className={styles.input}
-                onChange={(e) => onChange(e.target.value)}
+                onChange={(e) => onChange && onChange(e.target.value)}
                 // style={{
                 //     backgroundImage: `url(${iconUrl})`,
                 // }}
