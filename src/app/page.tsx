@@ -57,5 +57,7 @@ export default function Home() {
             Read our docs
           </a>
         </div>
-    );
+      </main>
+    </div>
+  );
 }
