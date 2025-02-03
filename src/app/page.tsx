@@ -6,112 +6,116 @@ import { Input } from "@/components/elements/Input";
 import { PhaseIcon } from "@/components/elements/PhaseIcon";
 import { SideMenu } from "@/components/layout/SideMenu";
 import { useState } from "react";
+import { Phase } from "@/components/layout/left/Phase";
+import { IconButton } from "@/components/elements/IconButton";
 
 export default function Home() {
-    const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-    return (
-        <div className={styles.page}>
-            <main className={styles.main}>
-                <TextButton color="blue">あいうえお</TextButton>
-                <Image
-                    className={styles.logo}
-                    src="/next.svg"
-                    alt="Next.js logo"
-                    width={180}
-                    height={38}
-                    priority
-                />
-                <ol>
-                    <li>
-                        Get started by editing <code>src/app/page.tsx</code>.
-                    </li>
-                    <li>Save and see your changes instantly.</li>
-                </ol>
-                <div className={styles.ctas}>
-                    <a
-                        className={styles.primary}
-                        href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        <Image
-                            className={styles.logo}
-                            src="/vercel.svg"
-                            alt="Vercel logomark"
-                            width={20}
-                            height={20}
-                        />
-                        Deploy now
-                    </a>
-                    <a
-                        href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={styles.secondary}
-                    >
-                        Read our docs
-                    </a>
-                </div>
-                <Input placeholder={"あいことばを入力"} iconUrl="/icon.png" />
-                <div
-                    style={{
-                        display: "flex",
-                        flexDirection: "row",
-                        gap: "30px",
-                    }}
-                >
-                    <PhaseIcon phase="read" isOn={true} />
-                    <PhaseIcon phase="delete" isOn={true} />
-                    <PhaseIcon phase="fix" isOn={true} />
-                    <PhaseIcon phase="answer" isOn={true} />
-                    <SideMenu isOpen={isModalOpen} setIsOpen={setIsModalOpen} />
-                </div>
-            </main>
-            <footer className={styles.footer}>
-                <a
-                    href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    <Image
-                        aria-hidden
-                        src="/file.svg"
-                        alt="File icon"
-                        width={16}
-                        height={16}
-                    />
-                    Learn
-                </a>
-                <a
-                    href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    <Image
-                        aria-hidden
-                        src="/window.svg"
-                        alt="Window icon"
-                        width={16}
-                        height={16}
-                    />
-                    Examples
-                </a>
-                <a
-                    href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    <Image
-                        aria-hidden
-                        src="/globe.svg"
-                        alt="Globe icon"
-                        width={16}
-                        height={16}
-                    />
-                    Go to nextjs.org →
-                </a>
-            </footer>
+  return (
+    <div className={styles.page}>
+      <main className={styles.main}>
+        <Phase />
+        <IconButton url="https://api.iconify.design/heroicons:document-check-16-solid.svg?color=%23ff9f40" />
+        <TextButton color="blue">あいうえお</TextButton>
+        <Image
+          className={styles.logo}
+          src="/next.svg"
+          alt="Next.js logo"
+          width={180}
+          height={38}
+          priority
+        />
+        <ol>
+          <li>
+            Get started by editing <code>src/app/page.tsx</code>.
+          </li>
+          <li>Save and see your changes instantly.</li>
+        </ol>
+        <div className={styles.ctas}>
+          <a
+            className={styles.primary}
+            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Image
+              className={styles.logo}
+              src="/vercel.svg"
+              alt="Vercel logomark"
+              width={20}
+              height={20}
+            />
+            Deploy now
+          </a>
+          <a
+            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.secondary}
+          >
+            Read our docs
+          </a>
         </div>
-    );
+        <Input placeholder={"あいことばを入力"} iconUrl="/icon.png" />
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            gap: "30px",
+          }}
+        >
+          <PhaseIcon phase="read" isOn={true} />
+          <PhaseIcon phase="delete" isOn={true} />
+          <PhaseIcon phase="fix" isOn={true} />
+          <PhaseIcon phase="answer" isOn={true} />
+          <SideMenu isOpen={isModalOpen} setIsOpen={setIsModalOpen} />
+        </div>
+      </main>
+      <footer className={styles.footer}>
+        <a
+          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Image
+            aria-hidden
+            src="/file.svg"
+            alt="File icon"
+            width={16}
+            height={16}
+          />
+          Learn
+        </a>
+        <a
+          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Image
+            aria-hidden
+            src="/window.svg"
+            alt="Window icon"
+            width={16}
+            height={16}
+          />
+          Examples
+        </a>
+        <a
+          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Image
+            aria-hidden
+            src="/globe.svg"
+            alt="Globe icon"
+            width={16}
+            height={16}
+          />
+          Go to nextjs.org →
+        </a>
+      </footer>
+    </div>
+  );
 }
