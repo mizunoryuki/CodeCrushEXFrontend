@@ -1,0 +1,15 @@
+@use "@/styles/variables/Colors.scss";
+@use "@/styles/variables/Typography.scss";
+@use "@/styles/variables/Shadows.scss";
+
+.phase {
+  color: var(--color-white);
+  display: flex;
+  font-weight: bold;
+  font-size: var(--font-size-20);
+  background-color: var(--color-blue);
+  border-radius: 30px;
+  padding: 24px 18px;
+  gap: 18;
+  width: 400px;
+}
