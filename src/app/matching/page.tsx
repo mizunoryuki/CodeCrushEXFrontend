@@ -1,12 +1,12 @@
 "use client";
 import { RoomCreated } from "@/components/layout/RoomCreated";
 import { RoomSelection } from "@/components/layout/RoomSelection";
-import { MatchingStatusAtom } from "../../atoms/matchingStore";
+import { matchingStatusAtom } from "../../atoms/matchingStore";
 import { useAtomValue } from "jotai";
 import { JoinRoom } from "@/components/layout/JoinRoom";
 
 const Page = () => {
-    const matchingStatus = useAtomValue(MatchingStatusAtom);
+    const matchingStatus = useAtomValue(matchingStatusAtom);
     if (matchingStatus === "select") {
         return <RoomSelection />;
     } else if (matchingStatus === "create") {
