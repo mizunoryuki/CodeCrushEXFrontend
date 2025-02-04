@@ -94,7 +94,7 @@ export const Code = () => {
                 className={styles.codeBox}
                 style={{
                     display: isOpenDocument ? "" : "none",
-                    width: isOpenDocument ? "49%" : "",
+                    width: isOpenDocument ? "48.5%" : "",
                     border:
                         phase === "answer"
                             ? "5px solid var(--color-green)"
