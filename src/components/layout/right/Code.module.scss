@@ -1,5 +1,5 @@
 .codeBoxAll {
-    width: 854px;
+    width: 100%;
     height: 504px;
     display: flex;
     flex-direction: row;
@@ -31,8 +31,10 @@
     gap: 7px;
 }
 .documentBox {
+    box-sizing: border-box;
     overflow-y: scroll;
-    scrollbar-width: thin;
+    scrollbar-color: #64646466 #ffffff;
+    scrollbar-width: auto;
     height: 80%;
     width: 100%;
     color: var(--color-medium-gray);

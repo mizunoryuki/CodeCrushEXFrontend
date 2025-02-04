@@ -9,7 +9,13 @@ export default function Home() {
             <main className={styles.main}>
                 <Left />
             </main>
-            <Code phase="read" />
+            <div
+                style={{
+                    width: "800px",
+                }}
+            >
+                <Code phase="read" />
+            </div>
         </div>
     );
 }
