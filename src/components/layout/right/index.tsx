@@ -6,7 +6,7 @@ export const Right = () => {
     return (
         <div className={styles.right}>
             <Code phase="read" />
-            <Output outputText="testestestetstes" />
+            <Output />
         </div>
     );
 };
