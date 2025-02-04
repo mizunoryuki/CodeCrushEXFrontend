@@ -1,3 +1,5 @@
+@import url("../styles/variables/Colors.scss");
+
 :root {
     --background: var(--color-light-gray);
     --foreground: #171717;

@@ -1,3 +1,4 @@
+"use client";
 import { useAtomValue } from "jotai";
 import styles from "./Output.module.scss";
 import { outputTextAtom } from "@/atoms/codeStore";
