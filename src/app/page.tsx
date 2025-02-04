@@ -6,7 +6,13 @@ export default function Home() {
     return (
         <Link href="/matching">
             <div className={styles.main}>
-                <Image src="\logo.svg" alt="icon" width={450} height={100} />
+                <Image
+                    src={`/logo.svg`}
+                    alt="logo"
+                    width={450}
+                    height={100}
+                    priority
+                />
             </div>
         </Link>
     );
