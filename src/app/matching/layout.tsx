@@ -6,11 +6,9 @@ export default function Layout({
     children: React.ReactNode;
 }>) {
     return (
-        <>
-            <div className={styles.layout}>
-                <h1>プレイヤーマッチング</h1>
-                {children}
-            </div>
-        </>
+        <div className={styles.layout}>
+            <h1>プレイヤーマッチング</h1>
+            {children}
+        </div>
     );
 }

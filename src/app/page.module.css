@@ -1,10 +1,5 @@
 @import url("../styles/variables/Colors.scss");
 
 .main {
-    width: 100vw;
-    height: 100vh;
     background-color: var(--color-light-gray);
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
