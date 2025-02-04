@@ -68,16 +68,18 @@ export const SideMenu = () => {
                             href="/"
                             style={{
                                 color: "var(--color-yellow)",
-                                fontSize: "24px",
+                                fontSize: "var(--font-size-20)",
+                                fontWeight: "bold",
                             }}
                         >
                             タイトルに戻る
                         </Link>
                         <Link
-                            href="/"
+                            href="/matching"
                             style={{
                                 color: "var(--color-red)",
-                                fontSize: "24px",
+                                fontSize: "var(--font-size-20)",
+                                fontWeight: "bold",
                             }}
                         >
                             ゲームを終了
