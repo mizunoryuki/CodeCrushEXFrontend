@@ -1,6 +1,6 @@
 "use client";
 import { Editor, Monaco } from "@monaco-editor/react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import CustomTheme from "../../../styles/theme/codeEditorTheme.json";
 import { IconButton } from "@/components/elements/IconButton";
 import styles from "./Code.module.scss";
@@ -15,15 +15,6 @@ type Prop = {
 export const Code = ({ phase }: Prop) => {
     const [isOpenDocument, setIsOpenDocument] = useState(false);
     const [code, setCode] = useAtom(myCodeAtom);
-    useEffect(() => {
-        if (!code) {
-            setCode(questionCode);
-        }
-    }, [code, setCode]);
-    const handleChange = (value: string | undefined) => {
-        if (value === undefined) return;
-        setCode(value);
-    };
     let phaseTextLeft = "自分のコード";
     let phaseTextRight = "仕様書";
     if (phase === "read") {
@@ -33,6 +24,10 @@ export const Code = ({ phase }: Prop) => {
     } else if (phase === "answer") {
         phaseTextRight = "答え";
     }
+    const handleChange = (value: string | undefined) => {
+        if (value === undefined) return;
+        setCode(value);
+    };
     const handleOpenDocument = () => {
         console.log("Open document");
         setIsOpenDocument(!isOpenDocument);
@@ -40,9 +35,6 @@ export const Code = ({ phase }: Prop) => {
     const handleRunCode = () => {
         console.log("Run code");
     };
-    useEffect(() => {
-        setCode(questionCode);
-    }, [setCode]);
 
     const handleEditorDidMount = (monaco: Monaco) => {
         monaco.editor.defineTheme("CustomTheme", {
