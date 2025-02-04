@@ -7,7 +7,7 @@ export const Right = () => {
     return (
         <>
             <div className={styles.right}>
-                <Code phase="read" />
+                <Code />
                 <Output />
             </div>
             <SideMenu />

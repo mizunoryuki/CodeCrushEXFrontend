@@ -6,13 +6,13 @@ import { IconButton } from "@/components/elements/IconButton";
 import styles from "./Code.module.scss";
 import { questionCode } from "../../../questions/code/question1";
 import { documentCode } from "../../../questions/documents/document1";
-import { useAtom } from "jotai";
+import { useAtom, useAtomValue } from "jotai";
 import { myCodeAtom } from "@/atoms/codeStore";
 import ReactMarkdown from "react-markdown";
-type Prop = {
-    phase: "read" | "delete" | "fix" | "answer";
-};
-export const Code = ({ phase }: Prop) => {
+import { phaseStatusAtom } from "@/atoms/phaseStatusAtom";
+
+export const Code = () => {
+    const phase = useAtomValue(phaseStatusAtom);
     const [isOpenDocument, setIsOpenDocument] = useState(false);
     const [code, setCode] = useAtom(myCodeAtom);
     let phaseTextLeft = "自分のコード";
