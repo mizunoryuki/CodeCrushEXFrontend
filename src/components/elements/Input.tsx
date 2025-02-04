@@ -3,7 +3,7 @@ import styles from "./Input.module.scss";
 interface Props {
     placeholder: string;
     iconUrl: string;
-    onChange?: (value: string | number) => void;
+    onChange?: (value: string) => void;
 }
 export const Input = ({ placeholder, iconUrl, onChange }: Props) => {
     return (

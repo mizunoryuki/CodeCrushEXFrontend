@@ -3,19 +3,20 @@ import { TextButton } from "../elements/TextButton";
 import styles from "../../app/matching/page.module.scss";
 import joinRoom from "../layout/JoinRoom.module.scss";
 import { useState } from "react";
-
-type Watchword = string | number;
+import { searchWatchword } from "@/api/matching/roomJoin";
 
 export const JoinRoom = () => {
-    const [watchwordToJoin, setWatchwordToJoin] = useState<Watchword>("");
+    const [watchwordToJoin, setWatchwordToJoin] = useState<string>("");
     //あいことばを変更するための関数
-    const handleChange = (value: Watchword) => {
+    const handleChange = (value: string) => {
         setWatchwordToJoin(value);
     };
 
     //参加ボタン押した時に発火する関数
-    const handleClick = () => {
-        console.log(watchwordToJoin);
+    const handleClick = async () => {
+        //パスワードの確認してルームに参加
+        const searchInfo = await searchWatchword(watchwordToJoin);
+        console.log(searchInfo);
     };
     return (
         <div className={`${styles.contentBox} ${joinRoom.joinBox}`}>
