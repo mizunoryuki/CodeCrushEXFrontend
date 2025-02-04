@@ -1,19 +1,13 @@
-"use client";
+import Link from "next/link";
+import Image from "next/image";
 import styles from "./page.module.css";
-import { Left } from "@/components/layout/left";
-import { Right } from "@/components/layout/right";
-import { SideMenu } from "@/components/layout/SideMenu";
-import { useState } from "react";
 
 export default function Home() {
-    const [isOpen, setIsOpen] = useState(false);
     return (
-        <div className={styles.page}>
-            <main className={styles.main}>
-                <Left />
-                <Right />
-                <SideMenu isOpen={isOpen} setIsOpen={setIsOpen} />
-            </main>
-        </div>
+        <Link href="/matching">
+            <div className={styles.main}>
+                <Image src="\logo.svg" alt="icon" width={450} height={100} />
+            </div>
+        </Link>
     );
 }
