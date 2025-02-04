@@ -1,14 +1,12 @@
+"use client";
 import Image from "next/image";
 import styles from "./SideMenu.module.scss";
-import { Dispatch, SetStateAction } from "react";
 import Link from "next/link";
+import { useAtom } from "jotai";
+import { sidebarAtom } from "@/atoms/sidebarStore";
 
-type Props = {
-    isOpen: boolean;
-    setIsOpen: Dispatch<SetStateAction<boolean>>;
-};
-
-export const SideMenu = ({ isOpen, setIsOpen }: Props) => {
+export const SideMenu = () => {
+    const [isOpen, setIsOpen] = useAtom(sidebarAtom);
     return (
         <div>
             {/* 背景の透かすための要素 */}

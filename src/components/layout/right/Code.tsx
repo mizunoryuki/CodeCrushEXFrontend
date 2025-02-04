@@ -1,24 +1,20 @@
 "use client";
 import { Editor, Monaco } from "@monaco-editor/react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import CustomTheme from "../../../styles/theme/codeEditorTheme.json";
 import { IconButton } from "@/components/elements/IconButton";
 import styles from "./Code.module.scss";
-import { questionCode } from "../../../../public/code/question1";
-import { documentCode } from "../../../../public/document/document1";
-import { useAtom } from "jotai";
+import { questionCode } from "../../../questions/code/question1";
+import { documentCode } from "../../../questions/documents/document1";
+import { useAtom, useAtomValue } from "jotai";
 import { myCodeAtom } from "@/atoms/codeStore";
 import ReactMarkdown from "react-markdown";
-type Prop = {
-    phase: "read" | "delete" | "fix" | "answer";
-};
-export const Code = ({ phase }: Prop) => {
+import { phaseStatusAtom } from "@/atoms/phaseStatusAtom";
+
+export const Code = () => {
+    const phase = useAtomValue(phaseStatusAtom);
     const [isOpenDocument, setIsOpenDocument] = useState(false);
     const [code, setCode] = useAtom(myCodeAtom);
-    const handleChange = (value: string | undefined) => {
-        if (value === undefined) return;
-        setCode(value);
-    };
     let phaseTextLeft = "自分のコード";
     let phaseTextRight = "仕様書";
     if (phase === "read") {
@@ -28,6 +24,10 @@ export const Code = ({ phase }: Prop) => {
     } else if (phase === "answer") {
         phaseTextRight = "答え";
     }
+    const handleChange = (value: string | undefined) => {
+        if (value === undefined) return;
+        setCode(value);
+    };
     const handleOpenDocument = () => {
         console.log("Open document");
         setIsOpenDocument(!isOpenDocument);
@@ -35,9 +35,7 @@ export const Code = ({ phase }: Prop) => {
     const handleRunCode = () => {
         console.log("Run code");
     };
-    useEffect(() => {
-        setCode(questionCode);
-    }, [setCode]);
+
     const handleEditorDidMount = (monaco: Monaco) => {
         monaco.editor.defineTheme("CustomTheme", {
             base: "vs",
@@ -50,7 +48,7 @@ export const Code = ({ phase }: Prop) => {
             <div
                 className={styles.codeBox}
                 style={{
-                    width: isOpenDocument ? "calc(50% - 5px)" : "100%",
+                    width: isOpenDocument ? "50%" : "100%",
                 }}
             >
                 <div className={styles.codeHeader}>
@@ -87,7 +85,7 @@ export const Code = ({ phase }: Prop) => {
                     width="100%"
                     defaultLanguage="c"
                     onChange={handleChange}
-                    defaultValue={code}
+                    value={code}
                     theme="CustomTheme"
                     beforeMount={handleEditorDidMount}
                 />
@@ -96,6 +94,7 @@ export const Code = ({ phase }: Prop) => {
                 className={styles.codeBox}
                 style={{
                     display: isOpenDocument ? "" : "none",
+                    width: isOpenDocument ? "49%" : "",
                     border:
                         phase === "answer"
                             ? "5px solid var(--color-green)"
@@ -133,11 +132,11 @@ export const Code = ({ phase }: Prop) => {
                             scrollBeyondLastLine: false,
                             minimap: { enabled: false },
                         }}
-                        height="384px"
+                        height="90%"
                         width="100%"
                         defaultLanguage="c"
                         onChange={handleChange}
-                        defaultValue={questionCode}
+                        value={questionCode}
                         theme="CustomTheme"
                         beforeMount={handleEditorDidMount}
                     />
