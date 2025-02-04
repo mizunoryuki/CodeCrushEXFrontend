@@ -1,46 +1,36 @@
-import { useEffect } from "react";
-import { useAtom } from "jotai";
-import { useTimer } from "react-timer-hook";
-import { timeAtom } from "@/atoms/timeAtom";
-import { useHydrateAtoms } from "jotai/utils";
+import { atom, useAtom } from "jotai";
+import { atomWithStorage } from "jotai/utils";
+import { useEffect, useRef } from "react";
 
-export const usePhaseTimer = () => {
-    const storedTime = JSON.parse(
-        localStorage.getItem("timeState") ??
-            '{"minutes": 5, "seconds": 0, "isRunning": true}'
-    );
+const deadlineTimeAtom = atomWithStorage<number | null>("deadlineTime", null);
+const nowTimeAtom = atom(Date.now());
 
-    useHydrateAtoms([[timeAtom, storedTime]]);
-    const [storageTime, setStorageTime] = useAtom(timeAtom);
+export const usePhaseTimer = (
+  timeoutSec: number,
+  onTimeout: () => void
+): number | null => {
+  const [deadlineTime, setDeadlineTime] = useAtom(deadlineTimeAtom);
+  const [nowTime, setNowTime] = useAtom(nowTimeAtom);
+  const remainingTime = deadlineTime === null ? null : deadlineTime - nowTime;
+  const intervalId = useRef<NodeJS.Timeout | null>(null);
 
-    const time = new Date();
-    if (storageTime?.minutes != null && storageTime?.seconds != null) {
-        time.setSeconds(
-            time.getSeconds() + storageTime.minutes * 60 + storageTime.seconds
-        );
-    }
+  useEffect(() => {
+    intervalId.current = setInterval(() => {
+      setNowTime(Date.now());
+    }, 1000);
+  }, [setNowTime]);
 
-    const { seconds, minutes, isRunning } = useTimer({
-        expiryTimestamp: time,
-        onExpire: () => console.warn("onExpire called"),
-        autoStart: true,
+  useEffect(() => {
+    setDeadlineTime((v) => {
+      if (v !== null) return v;
+      return Date.now() + timeoutSec * 1000;
     });
+  }, [setDeadlineTime, timeoutSec]);
 
-    useEffect(() => {
-        if (minutes === 0 && seconds === 0 && isRunning) {
-            setStorageTime({
-                minutes: 6,
-                seconds: 0,
-                isRunning: false,
-            });
-        } else {
-            setStorageTime({
-                minutes: minutes,
-                seconds: seconds,
-                isRunning: isRunning,
-            });
-        }
-    }, [minutes, seconds, isRunning, setStorageTime]);
-
-    return { storageTime };
+  if (remainingTime !== null && remainingTime <= 0) {
+    onTimeout();
+    if (intervalId.current !== null) clearInterval(intervalId.current);
+    setDeadlineTime(null);
+  }
+  return remainingTime;
 };
