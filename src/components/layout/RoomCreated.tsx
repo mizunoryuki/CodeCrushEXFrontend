@@ -2,9 +2,21 @@ import { TextButton } from "../elements/TextButton";
 import roomcreated from "../layout/RoomCreated.module.scss";
 import matching from "../../app/matching/page.module.scss";
 import { useAtomValue } from "jotai";
-import { watchWordAtom } from "@/atoms/matchingStore";
+import { playerAtom, watchWordAtom } from "@/atoms/matchingStore";
+import { joinRoom } from "@/api/matching/roomJoin";
+import { useEffect } from "react";
+
 export const RoomCreated = () => {
     const watchWord = useAtomValue(watchWordAtom);
+    const player = useAtomValue(playerAtom);
+
+    //ルームに参加
+    useEffect(() => {
+        const fetchSearchInfo = async () => {
+            joinRoom(watchWord, player);
+        };
+        fetchSearchInfo();
+    }, [watchWord, player]);
 
     //あいことばをコピー
     const copyWatchword = () => {

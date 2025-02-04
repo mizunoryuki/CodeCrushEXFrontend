@@ -6,4 +6,7 @@ type MatchState = "select" | "create" | "join";
 export const matchingStatusAtom = atom<MatchState>("select");
 
 //あいことば
-export const watchWordAtom = atom<string>("123456");
+export const watchWordAtom = atom<string>("");
+
+//プレイヤーID
+export const playerAtom = atom<string>("");
