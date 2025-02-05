@@ -37,12 +37,9 @@ export const Code = () => {
     };
     const handleRunCode = async () => {
         setIsPending(true);
-        const text = await getOutput(code);
+        const textList = await getOutput(code);
         setIsPending(false);
-        console.log(text);
-        if (text !== null) {
-            const textList = text.split("\n");
-            console.log(textList);
+        if (textList !== null) {
             setoutputText(textList);
         }
     };

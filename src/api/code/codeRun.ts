@@ -30,7 +30,7 @@ type codeDetailsRes = {
 
 export const getOutput = async (
     source_code: string
-): Promise<string | null> => {
+): Promise<string[] | null> => {
     try {
         const apiKey = process.env.NEXT_PUBLIC_API_KEY;
         const url = `${apiKey}api/paiza/run`;
@@ -54,35 +54,38 @@ export const getOutput = async (
         console.log("Initial Response:", initialResult);
 
         if (!initialResult.id) {
-            return "ジョブの作成に失敗しました。";
+            return ["ジョブの作成に失敗しました。"];
         }
 
         // ジョブの結果をポーリング
         const jobId = initialResult.id;
         const detailsUrl = `${apiKey}api/paiza/details/${jobId}`; // FastAPIの結果取得エンドポイント
 
-        const pollJobDetails = async (): Promise<string | null> => {
+        const pollJobDetails = async (): Promise<string[] | null> => {
             const detailsResponse = await fetch(detailsUrl);
             const jobDetails = await detailsResponse.json();
             console.log("Job Details Response:", jobDetails);
 
             if (jobDetails.status === "completed") {
                 if (jobDetails.stdout || jobDetails.stderr) {
-                    return jobDetails.stdout || jobDetails.stderr;
+                    const output: string =
+                        jobDetails.stdout || jobDetails.stderr;
+                    const outputArray = output.split("\n");
+                    return outputArray;
                 } else {
-                    return "実行結果が見つかりませんでした。";
+                    return ["実行結果が見つかりませんでした。"];
                 }
             } else if (jobDetails.status === "running") {
                 await new Promise((resolve) => setTimeout(resolve, 1000)); // 1秒後に再ポーリング
                 return pollJobDetails();
             } else {
-                return "コードの実行に失敗しました。";
+                return ["コードの実行に失敗しました。"];
             }
         };
 
         return pollJobDetails();
     } catch (error) {
         console.error("エラー:", error);
-        return "エラーが発生しました。";
+        return ["エラーが発生しました。"];
     }
 };
