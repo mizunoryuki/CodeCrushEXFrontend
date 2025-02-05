@@ -6,15 +6,17 @@ import { IconButton } from "@/components/elements/IconButton";
 import styles from "./Code.module.scss";
 import { questionCode } from "../../../questions/code/question1";
 import { documentCode } from "../../../questions/documents/document1";
-import { useAtom, useAtomValue } from "jotai";
-import { myCodeAtom } from "@/atoms/codeStore";
+import { useAtom, useAtomValue, useSetAtom } from "jotai";
+import { myCodeAtom, outputTextAtom } from "@/atoms/codeStore";
 import ReactMarkdown from "react-markdown";
 import { phaseStatusAtom } from "@/atoms/phaseStatusAtom";
+import { getOutput } from "@/api/code/codeRun";
 
 export const Code = () => {
     const phase = useAtomValue(phaseStatusAtom);
     const [isOpenDocument, setIsOpenDocument] = useState(false);
     const [code, setCode] = useAtom(myCodeAtom);
+    const setoutputText = useSetAtom(outputTextAtom);
     let phaseTextLeft = "自分のコード";
     let phaseTextRight = "仕様書";
     if (phase === "read") {
@@ -32,8 +34,12 @@ export const Code = () => {
         console.log("Open document");
         setIsOpenDocument(!isOpenDocument);
     };
-    const handleRunCode = () => {
-        console.log("Run code");
+    const handleRunCode = async () => {
+        const text = await getOutput(code);
+        console.log("出力結果", text);
+        if (text !== null) {
+            setoutputText(text);
+        }
     };
 
     const handleEditorDidMount = (monaco: Monaco) => {
@@ -85,7 +91,7 @@ export const Code = () => {
                     width="100%"
                     defaultLanguage="c"
                     onChange={handleChange}
-                    value={code}
+                    value={phase === "read" ? questionCode : code}
                     theme="CustomTheme"
                     beforeMount={handleEditorDidMount}
                 />
