@@ -7,4 +7,4 @@ export const questionCodeAtom = atom<string>("");
 export const myCodeAtom = atom<string>("");
 
 //出力
-export const outputTextAtom = atom<string>("");
+export const outputTextAtom = atom<string[]>([""]);

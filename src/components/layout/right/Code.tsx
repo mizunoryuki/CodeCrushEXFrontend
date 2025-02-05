@@ -17,6 +17,7 @@ export const Code = () => {
     const [isOpenDocument, setIsOpenDocument] = useState(false);
     const [code, setCode] = useAtom(myCodeAtom);
     const setoutputText = useSetAtom(outputTextAtom);
+    const [isPending, setIsPending] = useState<boolean>(false); //codeを実行中かどうか
     let phaseTextLeft = "自分のコード";
     let phaseTextRight = "仕様書";
     if (phase === "read") {
@@ -35,10 +36,14 @@ export const Code = () => {
         setIsOpenDocument(!isOpenDocument);
     };
     const handleRunCode = async () => {
+        setIsPending(true);
         const text = await getOutput(code);
-        console.log("出力結果", text);
+        setIsPending(false);
+        console.log(text);
         if (text !== null) {
-            setoutputText(text);
+            const textList = text.split("\n");
+            console.log(textList);
+            setoutputText(textList);
         }
     };
 
@@ -152,6 +157,26 @@ export const Code = () => {
                     </div>
                 )}
             </div>
+            {isPending ? (
+                <div
+                    style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        backgroundColor: "white",
+                        transform: "translate(-50%, -50%)",
+                        border: "3px solid var(--color-green)",
+                        padding: "30px",
+                        borderRadius: "30px",
+                        boxShadow: "var(--shadow-normal)",
+                        color: "Var(--color-dark-gray)",
+                    }}
+                >
+                    <h1>コードを実行中です</h1>
+                </div>
+            ) : (
+                <></>
+            )}
         </div>
     );
 };

@@ -31,7 +31,6 @@ type codeDetailsRes = {
 export const getOutput = async (
     source_code: string
 ): Promise<string | null> => {
-    console.log(source_code);
     try {
         const apiKey = process.env.NEXT_PUBLIC_API_KEY;
         const url = `${apiKey}api/paiza/run`;
