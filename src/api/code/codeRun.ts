@@ -70,7 +70,7 @@ export const getOutput = async (
                 if (jobDetails.stdout || jobDetails.stderr) {
                     const output: string =
                         jobDetails.stdout || jobDetails.stderr;
-                    const outputArray = output.split("\n");
+                    const outputArray = output.split("\n"); //改行で区切る
                     return outputArray;
                 } else {
                     return ["実行結果が見つかりませんでした。"];
