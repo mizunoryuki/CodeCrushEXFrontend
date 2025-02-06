@@ -8,7 +8,11 @@ export const Output = () => {
     return (
         <div className={styles.outputGroup}>
             <h1>実行結果</h1>
-            <div className={styles.outputMain}>{outputText}</div>
+            <div className={styles.outputMain}>
+                {outputText.map((text, index) => (
+                    <p key={index}>{text}</p>
+                ))}
+            </div>
         </div>
     );
 };

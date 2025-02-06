@@ -6,15 +6,18 @@ import { IconButton } from "@/components/elements/IconButton";
 import styles from "./Code.module.scss";
 import { questionCode } from "../../../questions/code/question1";
 import { documentCode } from "../../../questions/documents/document1";
-import { useAtom, useAtomValue } from "jotai";
-import { myCodeAtom } from "@/atoms/codeStore";
+import { useAtom, useAtomValue, useSetAtom } from "jotai";
+import { myCodeAtom, outputTextAtom } from "@/atoms/codeStore";
 import ReactMarkdown from "react-markdown";
 import { phaseStatusAtom } from "@/atoms/phaseStatusAtom";
+import { getOutput } from "@/api/code/codeRun";
 
 export const Code = () => {
     const phase = useAtomValue(phaseStatusAtom);
     const [isOpenDocument, setIsOpenDocument] = useState(false);
     const [code, setCode] = useAtom(myCodeAtom);
+    const setoutputText = useSetAtom(outputTextAtom);
+    const [isPending, setIsPending] = useState<boolean>(false); //codeを実行中かどうか
     let phaseTextLeft = "自分のコード";
     let phaseTextRight = "仕様書";
     if (phase === "read") {
@@ -32,8 +35,13 @@ export const Code = () => {
         console.log("Open document");
         setIsOpenDocument(!isOpenDocument);
     };
-    const handleRunCode = () => {
-        console.log("Run code");
+    const handleRunCode = async () => {
+        setIsPending(true);
+        const textList = await getOutput(code);
+        setIsPending(false);
+        if (textList !== null) {
+            setoutputText(textList);
+        }
     };
 
     const handleEditorDidMount = (monaco: Monaco) => {
@@ -85,7 +93,7 @@ export const Code = () => {
                     width="100%"
                     defaultLanguage="c"
                     onChange={handleChange}
-                    value={code}
+                    value={phase === "read" ? questionCode : code}
                     theme="CustomTheme"
                     beforeMount={handleEditorDidMount}
                 />
@@ -146,6 +154,26 @@ export const Code = () => {
                     </div>
                 )}
             </div>
+            {isPending ? (
+                <div
+                    style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        backgroundColor: "white",
+                        transform: "translate(-50%, -50%)",
+                        border: "3px solid var(--color-green)",
+                        padding: "30px",
+                        borderRadius: "30px",
+                        boxShadow: "var(--shadow-normal)",
+                        color: "Var(--color-dark-gray)",
+                    }}
+                >
+                    <h1>コードを実行中です</h1>
+                </div>
+            ) : (
+                <></>
+            )}
         </div>
     );
 };
