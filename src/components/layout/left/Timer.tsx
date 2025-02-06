@@ -1,5 +1,4 @@
 "use client";
-
 import { toMin } from "@/utils/toMin";
 import styles from "./Timer.module.scss";
 import { usePhaseTimer } from "@/hooks/usePhaseTimer";
@@ -8,21 +7,22 @@ import { useEffect, useState } from "react";
 import { useAtom, useAtomValue } from "jotai";
 import { useRouter } from "next/navigation";
 import SendStatus from "@/api/status/sendStatus";
-import { watchWordAtom } from "@/atoms/matchingStore";
+import { playerAtom, watchWordAtom } from "@/atoms/matchingStore";
 import { phaseStatusAtom } from "@/atoms/phaseStatusAtom";
+import useStatus from "../../../hooks/useStatus";
 
 const pages = ["", "", "read", "delete", "fix", "answer"];
 
 export const Timer = () => {
-  const [phaseStatus, setPhaseStatus] = useAtom(phaseStatusAtom);
-  // const phaseStatus: string = "read";
-  let timeoutSec: number = 0;
-  const router = useRouter();
   const watchWord = useAtomValue(watchWordAtom);
-  // const currentIndex = pages.indexOf(phaseStatus.status);
+  const [phaseStatus, setPhaseStatus] = useAtom(phaseStatusAtom);
+  const player = useAtomValue(playerAtom);
   const [color, setColor] = useState("green");
   const [sec, setSec] = useState(0);
   const [min, setMin] = useState(0);
+  const router = useRouter();
+  const { status, setStatus } = useStatus(watchWord);
+  let timeoutSec: number = 0;
 
   if (pages[phaseStatus.status] === "read") {
     timeoutSec = 5;
@@ -33,7 +33,7 @@ export const Timer = () => {
   }
 
   const time = usePhaseTimer(timeoutSec, () => {
-    SendStatus(watchWord, "player1", phaseStatus.status + 1);
+    SendStatus(watchWord, player, phaseStatus.status + 1);
   });
 
   if (time.isFinish === true) {
@@ -54,6 +54,8 @@ export const Timer = () => {
       }
     }
   }, [time, min, sec, setSec, setMin]);
+
+  console.log(status);
 
   return pages[phaseStatus.status] === "anser" ? (
     <div className={`${styles.time} ${styles[color]}`}>終了！！！！</div>
