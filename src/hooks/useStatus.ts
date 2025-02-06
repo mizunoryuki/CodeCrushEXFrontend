@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 const useStatus = (watchword: string) => {
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+  // const url = `${apiKey}sse/${watchword}/statusGet`;
   const url = `${apiKey}sse/${watchword}/statusGet`;
   const [status, setStatus] = useState<string>("status");
 
