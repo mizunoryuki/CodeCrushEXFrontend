@@ -20,3 +20,24 @@
     align-items: center;
     gap: 14px;
 }
+
+.roomCreating::after {
+    content: "";
+    display: inline-block;
+    animation: dots 1.5s steps(3) infinite;
+}
+
+@keyframes dots {
+    0% {
+        content: "";
+    }
+    33% {
+        content: ".";
+    }
+    66% {
+        content: "..";
+    }
+    100% {
+        content: "...";
+    }
+}
