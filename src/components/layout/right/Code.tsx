@@ -20,11 +20,11 @@ export const Code = () => {
     const [isPending, setIsPending] = useState<boolean>(false); //codeを実行中かどうか
     let phaseTextLeft = "自分のコード";
     let phaseTextRight = "仕様書";
-    if (phase.status === 2) {
+    if (phase === "read") {
         phaseTextLeft = "お題";
-    } else if (phase.status === 3) {
+    } else if (phase === "delete") {
         phaseTextLeft = "相手のコード";
-    } else if (phase.status === 5) {
+    } else if (phase === "answer") {
         phaseTextRight = "答え";
     }
     const handleChange = (value: string | undefined) => {
@@ -65,18 +65,29 @@ export const Code = () => {
                         <></>
                     ) : (
                         <div className={styles.buttons}>
-                            <div onClick={handleOpenDocument}>
-                                <IconButton
-                                    url="https://api.iconify.design/heroicons:document-text.svg?color=%23ffffff"
-                                    color="gray"
-                                />
-                            </div>
-                            <div onClick={handleRunCode}>
-                                <IconButton
-                                    url="https://api.iconify.design/fe:play.svg?color=%23ffffff"
-                                    color="orange"
-                                />
-                            </div>
+                            {phase === "answer" ? (
+                                <div onClick={handleOpenDocument}>
+                                    <IconButton
+                                        url="https://api.iconify.design/heroicons:document-text.svg?color=%23ffffff"
+                                        color="gray"
+                                    />
+                                </div>
+                            ) : (
+                                <>
+                                    <div onClick={handleOpenDocument}>
+                                        <IconButton
+                                            url="https://api.iconify.design/heroicons:document-text.svg?color=%23ffffff"
+                                            color="gray"
+                                        />
+                                    </div>
+                                    <div onClick={handleRunCode}>
+                                        <IconButton
+                                            url="https://api.iconify.design/fe:play.svg?color=%23ffffff"
+                                            color="orange"
+                                        />
+                                    </div>
+                                </>
+                            )}
                         </div>
                     )}
                 </div>
@@ -93,7 +104,7 @@ export const Code = () => {
                     width="100%"
                     defaultLanguage="c"
                     onChange={handleChange}
-                    value={phase.status === 2 ? questionCode : code}
+                    value={phase === "read" ? questionCode : code}
                     theme="CustomTheme"
                     beforeMount={handleEditorDidMount}
                 />
@@ -104,15 +115,22 @@ export const Code = () => {
                     display: isOpenDocument ? "" : "none",
                     width: isOpenDocument ? "48.5%" : "",
                     border:
-                        phase.status === 5
+                        phase === "answer"
                             ? "5px solid var(--color-green)"
                             : "5px solid var(--color-gray)",
                 }}
             >
                 <div className={styles.codeHeader}>
                     <p className={styles.text}>{phaseTextRight}</p>
-                    {phase.status === 5 ? (
-                        <></>
+                    {phase === "answer" ? (
+                        <div className={styles.buttons}>
+                            <div onClick={handleOpenDocument}>
+                                <IconButton
+                                    url="https://api.iconify.design/heroicons:document-text.svg?color=%23ffffff"
+                                    color="gray"
+                                />
+                            </div>
+                        </div>
                     ) : (
                         <div className={styles.buttons}>
                             <div onClick={handleOpenDocument}>
@@ -130,7 +148,7 @@ export const Code = () => {
                         </div>
                     )}
                 </div>
-                {phase.status === 5 ? (
+                {phase === "answer" ? (
                     <Editor
                         options={{
                             fontFamily: "Inter, Noto Sans JP",
