@@ -18,6 +18,7 @@ export const Code = () => {
     const [code, setCode] = useAtom(myCodeAtom);
     const setoutputText = useSetAtom(outputTextAtom);
     const [isPending, setIsPending] = useState<boolean>(false); //codeを実行中かどうか
+    setCode(questionCode);
     let phaseTextLeft = "自分のコード";
     let phaseTextRight = "仕様書";
     if (phase === "read") {
@@ -27,6 +28,7 @@ export const Code = () => {
     } else if (phase === "answer") {
         phaseTextRight = "答え";
     }
+
     const handleChange = (value: string | undefined) => {
         if (value === undefined) return;
         setCode(value);
@@ -93,7 +95,7 @@ export const Code = () => {
                     width="100%"
                     defaultLanguage="c"
                     onChange={handleChange}
-                    value={phase === "read" ? questionCode : code}
+                    value={code}
                     theme="CustomTheme"
                     beforeMount={handleEditorDidMount}
                 />

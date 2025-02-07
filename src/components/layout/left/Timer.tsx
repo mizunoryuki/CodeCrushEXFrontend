@@ -20,9 +20,8 @@ export const Timer = () => {
     const [color, setColor] = useState("green");
     const [min, setMin] = useState(0);
     const [sec, setSec] = useState(0);
-    const router = useRouter();
     //   const { status, setStatus } = useStatus(watchWord);
-    const timeoutSec = useRef(30);
+    const timeoutSec = useRef(60);
     const statusId = useRef(2);
 
     const time = usePhaseTimer(timeoutSec.current, () => {
@@ -37,11 +36,11 @@ export const Timer = () => {
             console.log(count);
             count++;
             if (status === "read") {
-                timeoutSec.current = 20;
+                timeoutSec.current = 60;
                 statusId.current = 2;
                 console.log("read");
             } else if (status === "delete") {
-                timeoutSec.current = 20;
+                timeoutSec.current = 60;
                 statusId.current = 3;
                 console.log("delete");
             } else if (status === "fix") {
