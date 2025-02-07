@@ -20,11 +20,11 @@ export const Code = () => {
     const [isPending, setIsPending] = useState<boolean>(false); //codeを実行中かどうか
     let phaseTextLeft = "自分のコード";
     let phaseTextRight = "仕様書";
-    if (phase === "read") {
-        phaseTextLeft = "お題のコード";
-    } else if (phase === "delete") {
+    if (phase.status === 2) {
+        phaseTextLeft = "お題";
+    } else if (phase.status === 3) {
         phaseTextLeft = "相手のコード";
-    } else if (phase === "answer") {
+    } else if (phase.status === 5) {
         phaseTextRight = "答え";
     }
     const handleChange = (value: string | undefined) => {
@@ -93,7 +93,7 @@ export const Code = () => {
                     width="100%"
                     defaultLanguage="c"
                     onChange={handleChange}
-                    value={phase === "read" ? questionCode : code}
+                    value={phase.status === 2 ? questionCode : code}
                     theme="CustomTheme"
                     beforeMount={handleEditorDidMount}
                 />
@@ -104,14 +104,14 @@ export const Code = () => {
                     display: isOpenDocument ? "" : "none",
                     width: isOpenDocument ? "48.5%" : "",
                     border:
-                        phase === "answer"
+                        phase.status === 5
                             ? "5px solid var(--color-green)"
                             : "5px solid var(--color-gray)",
                 }}
             >
                 <div className={styles.codeHeader}>
                     <p className={styles.text}>{phaseTextRight}</p>
-                    {phase === "answer" ? (
+                    {phase.status === 5 ? (
                         <></>
                     ) : (
                         <div className={styles.buttons}>
@@ -130,7 +130,7 @@ export const Code = () => {
                         </div>
                     )}
                 </div>
-                {phase === "answer" ? (
+                {phase.status === 5 ? (
                     <Editor
                         options={{
                             fontFamily: "Inter, Noto Sans JP",
