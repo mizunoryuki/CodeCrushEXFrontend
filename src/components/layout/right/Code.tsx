@@ -65,29 +65,18 @@ export const Code = () => {
                         <></>
                     ) : (
                         <div className={styles.buttons}>
-                            {phase === "answer" ? (
-                                <div onClick={handleOpenDocument}>
-                                    <IconButton
-                                        url="https://api.iconify.design/heroicons:document-text.svg?color=%23ffffff"
-                                        color="gray"
-                                    />
-                                </div>
-                            ) : (
-                                <>
-                                    <div onClick={handleOpenDocument}>
-                                        <IconButton
-                                            url="https://api.iconify.design/heroicons:document-text.svg?color=%23ffffff"
-                                            color="gray"
-                                        />
-                                    </div>
-                                    <div onClick={handleRunCode}>
-                                        <IconButton
-                                            url="https://api.iconify.design/fe:play.svg?color=%23ffffff"
-                                            color="orange"
-                                        />
-                                    </div>
-                                </>
-                            )}
+                            <div onClick={handleOpenDocument}>
+                                <IconButton
+                                    url="https://api.iconify.design/heroicons:document-text.svg?color=%23ffffff"
+                                    color="gray"
+                                />
+                            </div>
+                            <div onClick={handleRunCode}>
+                                <IconButton
+                                    url="https://api.iconify.design/fe:play.svg?color=%23ffffff"
+                                    color="orange"
+                                />
+                            </div>
                         </div>
                     )}
                 </div>
@@ -96,7 +85,7 @@ export const Code = () => {
                         fontFamily: "Inter, Noto Sans JP",
                         fontSize: 16,
                         fontWeight: "600",
-                        readOnly: false, //読み込みの有無を切り替え
+                        readOnly: phase === "read" ? true : false, //読み込みの有無を切り替え
                         scrollBeyondLastLine: false,
                         minimap: { enabled: false },
                     }}
@@ -122,31 +111,20 @@ export const Code = () => {
             >
                 <div className={styles.codeHeader}>
                     <p className={styles.text}>{phaseTextRight}</p>
-                    {phase === "answer" ? (
-                        <div className={styles.buttons}>
-                            <div onClick={handleOpenDocument}>
-                                <IconButton
-                                    url="https://api.iconify.design/heroicons:document-text.svg?color=%23ffffff"
-                                    color="gray"
-                                />
-                            </div>
+                    <div className={styles.buttons}>
+                        <div onClick={handleOpenDocument}>
+                            <IconButton
+                                url="https://api.iconify.design/heroicons:document-text.svg?color=%23ffffff"
+                                color="gray"
+                            />
                         </div>
-                    ) : (
-                        <div className={styles.buttons}>
-                            <div onClick={handleOpenDocument}>
-                                <IconButton
-                                    url="https://api.iconify.design/heroicons:document-text.svg?color=%23ffffff"
-                                    color="gray"
-                                />
-                            </div>
-                            <div onClick={handleRunCode}>
-                                <IconButton
-                                    url="https://api.iconify.design/fe:play.svg?color=%23ffffff"
-                                    color="orange"
-                                />
-                            </div>
+                        <div onClick={handleRunCode}>
+                            <IconButton
+                                url="https://api.iconify.design/fe:play.svg?color=%23ffffff"
+                                color="orange"
+                            />
                         </div>
-                    )}
+                    </div>
                 </div>
                 {phase === "answer" ? (
                     <Editor
@@ -154,7 +132,7 @@ export const Code = () => {
                             fontFamily: "Inter, Noto Sans JP",
                             fontSize: 16,
                             fontWeight: "600",
-                            readOnly: true, //読み込みの有無を切り替え
+                            readOnly: false, //読み込みの有無を切り替え
                             scrollBeyondLastLine: false,
                             minimap: { enabled: false },
                         }}
