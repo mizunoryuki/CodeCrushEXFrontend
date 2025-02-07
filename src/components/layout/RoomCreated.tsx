@@ -7,12 +7,11 @@ import { playerAtom, watchWordAtom } from "@/atoms/matchingStore";
 import { joinRoom } from "@/api/matching/roomJoin";
 import { useEffect } from "react";
 import useStatus from "@/hooks/useStatus";
-import { redirect } from "next/navigation";
 
 export const RoomCreated = () => {
   const watchWord = useAtomValue(watchWordAtom);
   const player = useAtomValue(playerAtom);
-  const phaseStatus = useStatus(watchWord);
+  useStatus(watchWord);
   //ルームに参加
   useEffect(() => {
     const fetchSearchInfo = async () => {
@@ -22,9 +21,9 @@ export const RoomCreated = () => {
     fetchSearchInfo();
   }, [watchWord, player]);
 
-  useEffect(() => {
-    if (phaseStatus.status !== "status") redirect(`/${phaseStatus.status}`);
-  }, [phaseStatus]);
+  // useEffect(() => {
+  //   if (phaseStatus.status !== "status") redirect(`/${phaseStatus.status}`);
+  // }, [phaseStatus]);
 
   //あいことばをコピー
   const copyWatchword = () => {

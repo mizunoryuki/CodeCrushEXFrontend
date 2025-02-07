@@ -1,18 +1,14 @@
-const SendStatus = (watchword: string, player: string, status: number) => {
+const sendCode = (watchword: string, player: string, code: string) => {
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
-  const url = `${apiKey}api/${watchword}/status`;
+  const url = `${apiKey}api/${watchword}/codeExchange`;
   //プレイヤーのjotaiからとる
-  console.log(`watchworde: ${watchword}, player: ${player}, status: ${status}`);
-  const sendData = { player: player, status: status };
+  const sendData = { player: player, code: code };
 
   fetch(url, {
-    //リクエストを送るためmethodはPOST
     method: "POST",
-    //headersは"Content-Type": "application/json"おまじないみたいなもん
     headers: {
       "Content-Type": "application/json",
     },
-    //JSON形式で送る
     body: JSON.stringify(sendData),
   })
     //接続できたかの確認
@@ -24,12 +20,12 @@ const SendStatus = (watchword: string, player: string, status: number) => {
     })
     //ここのdataにレスポンスの値が入っている
     .then((data) => {
-      console.log("sendStatus:  Success:", data);
-      console.log(`sendStatus: ${data.message}`);
+      console.log("Success:", data);
+      console.log(`sendCode: ${data.sendCode}`);
     })
     //エラーであった場合
     .catch((error) => {
       console.error("Error:", error);
     });
 };
-export default SendStatus;
+export default sendCode;

@@ -1,14 +1,18 @@
 import { Input } from "../elements/Input";
 import { TextButton } from "../elements/TextButton";
 import styles from "../../app/matching/page.module.scss";
-import joinRoom from "../layout/JoinRoom.module.scss";
+import joinRooms from "../layout/JoinRoom.module.scss";
 import { useState, useEffect } from "react";
 import { searchWatchword } from "@/api/matching/roomJoin";
 import useStatus from "@/hooks/useStatus";
-import { redirect } from "next/navigation";
+import { useSetAtom } from "jotai";
+import { playerAtom, watchWordAtom } from "@/atoms/matchingStore";
+import { joinRoom } from "@/api/matching/roomJoin";
 
 export const JoinRoom = () => {
   const [watchwordToJoin, setWatchwordToJoin] = useState<string>("");
+  const setWatchword = useSetAtom(watchWordAtom);
+  const setPlayer = useSetAtom(playerAtom);
   //   const [phaseStatus] = useStatus(watchwordToJoin)
   //あいことばを変更するための関数
   const handleChange = (value: string) => {
@@ -18,19 +22,26 @@ export const JoinRoom = () => {
   //参加ボタン押した時に発火する関数
   const handleClick = async () => {
     console.log(`watchwordToJoin: ${watchwordToJoin}`);
+    setWatchword(watchwordToJoin);
     //パスワードの確認してルームに参加
     const searchInfo = await searchWatchword(watchwordToJoin);
-    console.dir(searchInfo, { depth: null });
+    if (searchInfo !== null) {
+      console.log(searchInfo.player);
+      setPlayer(searchInfo.player);
+      const connect = joinRoom(watchwordToJoin, searchInfo.player);
+      console.log(`connect: ${connect}`);
+    }
   };
 
-  const phaseStatus = useStatus(watchwordToJoin);
+  useStatus(watchwordToJoin);
 
-  useEffect(() => {
-    if (phaseStatus.status !== "status") redirect(`/${phaseStatus.status}`);
-  }, [phaseStatus]);
+  // useEffect(() => {
+  //   console.log(phaseStatus.status);
+  //   if (phaseStatus.status !== "status") redirect(`/${phaseStatus.status}`);
+  // }, [phaseStatus]);
   return (
-    <div className={`${styles.contentBox} ${joinRoom.joinBox}`}>
-      <div className={joinRoom.watchwordBox}>
+    <div className={`${styles.contentBox} ${joinRooms.joinBox}`}>
+      <div className={joinRooms.watchwordBox}>
         <p>
           対戦相手とマッチングするための合言葉を入力してください。
           <br />
