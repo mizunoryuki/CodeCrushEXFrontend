@@ -1,9 +1,9 @@
-import { ConnectPlayer, ConnectReturn } from "./type";
+import { ConnectPlayer2, ConnectReturn } from "./type";
 
 //ルームがあるかどうかを調べる
 export const searchWatchword = async (
   watchword: string
-): Promise<ConnectReturn | null> => {
+): Promise<ConnectPlayer2 | null> => {
   try {
     const apiKey = process.env.NEXT_PUBLIC_API_KEY;
     const url = `${apiKey}api/${watchword}/search`;
@@ -19,17 +19,17 @@ export const searchWatchword = async (
       throw new Error("ネットワーク応答が正常ではありません");
     }
 
-    const data: ConnectPlayer = await response.json();
+    const data = await response.json();
     console.log("Success:", data);
     console.log(`watchword: ${data.watchword}`);
 
-    if (data.watchword) {
-      // ルームがすでにある場合、joinRoom を実行してその結果を返す
-      const connect = await joinRoom(watchword, data.player);
-      return connect;
-    }
+    // if (data.watchword) {
+    //   // ルームがすでにある場合、joinRoom を実行してその結果を返す
+    //   const connect = await joinRoom(watchword, data.player);
+    //   return connect;
+    // }
 
-    return null;
+    return data;
   } catch (error) {
     console.error("Error:", error);
     return null;
