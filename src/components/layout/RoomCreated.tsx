@@ -8,21 +8,21 @@ import { joinRoom } from "@/api/matching/roomJoin";
 import { useEffect } from "react";
 import useStatus from "@/hooks/useStatus";
 export const RoomCreated = () => {
-  const watchWord = useAtomValue(watchWordAtom);
-  const player = useAtomValue(playerAtom);
-  useStatus(watchWord);
-  //ルームに参加
-  useEffect(() => {
-    const fetchSearchInfo = async () => {
-      const atai = await joinRoom(watchWord, player);
-      console.log(atai);
-    };
-    fetchSearchInfo();
-  }, [watchWord, player]);
+    const watchWord = useAtomValue(watchWordAtom);
+    const player = useAtomValue(playerAtom);
+    useStatus(watchWord);
+    //ルームに参加
+    useEffect(() => {
+        const fetchSearchInfo = async () => {
+            const atai = await joinRoom(watchWord, player);
+            console.log(atai);
+        };
+        fetchSearchInfo();
+    }, [watchWord, player]);
 
-  // useEffect(() => {
-  //   if (phaseStatus.status !== "status") redirect(`/${phaseStatus.status}`);
-  // }, [phaseStatus]);
+    // useEffect(() => {
+    //   if (phaseStatus.status !== "status") redirect(`/${phaseStatus.status}`);
+    // }, [phaseStatus]);
 
     //あいことばをコピー
     const copyWatchword = () => {
@@ -38,15 +38,7 @@ export const RoomCreated = () => {
     return (
         <div className={matching.contentBox}>
             <p className={roomcreated.text}>あいことば</p>
-            {isCreateRoom ? (
-                <h2 className={roomcreated.watchword}>{watchWord}</h2>
-            ) : (
-                <h2
-                    className={`${roomcreated.watchword} ${roomcreated.roomCreating}`}
-                >
-                    生成中
-                </h2>
-            )}
+            <h2 className={roomcreated.watchword}>{watchWord}</h2>
             <TextButton color="gray" onClick={copyWatchword}>
                 <div className={roomcreated.copytext}>
                     <p>コピー</p>
