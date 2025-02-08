@@ -1,13 +1,14 @@
 import { Input } from "../elements/Input";
-import { TextButton } from "../elements/TextButton";
 import styles from "../../app/matching/page.module.scss";
 import joinRooms from "../layout/JoinRoom.module.scss";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { searchWatchword } from "@/api/matching/roomJoin";
 import useStatus from "@/hooks/useStatus";
 import { useSetAtom } from "jotai";
 import { playerAtom, watchWordAtom } from "@/atoms/matchingStore";
 import { joinRoom } from "@/api/matching/roomJoin";
+import { PopCircleButton } from "../elements/PopCircleButton";
+import { motion } from "framer-motion";
 
 export const JoinRoom = () => {
   const [watchwordToJoin, setWatchwordToJoin] = useState<string>("");
@@ -41,21 +42,33 @@ export const JoinRoom = () => {
   // }, [phaseStatus]);
   return (
     <div className={`${styles.contentBox} ${joinRooms.joinBox}`}>
-      <div className={joinRooms.watchwordBox}>
-        <p>
-          対戦相手とマッチングするための合言葉を入力してください。
-          <br />
-          同じ合言葉を入力したプレイヤー同士がマッチングします。
-        </p>
-        <Input
-          placeholder="あいことばを入力"
-          iconUrl="/icon.png"
-          onChange={handleChange}
-        />
-      </div>
-      <TextButton color="green" onClick={handleClick}>
-        参加
-      </TextButton>
+      <motion.div
+        className="time"
+        animate={{ opacity: [0, 1], y: [40, 0], scaleY: [0.8, 1] }}
+        transition={{ delay: 0.1 }}
+      >
+        <div className={joinRooms.watchwordBox}>
+          <p>
+            対戦相手とマッチングするための合言葉を入力してください。
+            <br />
+            同じ合言葉を入力したプレイヤー同士がマッチングします。
+          </p>
+          <Input
+            placeholder="あいことばを入力"
+            iconUrl="/icon.png"
+            onChange={handleChange}
+          />
+        </div>
+      </motion.div>
+      <motion.div
+        className="time"
+        animate={{ opacity: [0, 1], y: [40, 0], scaleY: [0.8, 1] }}
+        transition={{ delay: 0.2 }}
+      >
+        <PopCircleButton color="green" onClick={handleClick}>
+          参加
+        </PopCircleButton>
+      </motion.div>
     </div>
   );
 };

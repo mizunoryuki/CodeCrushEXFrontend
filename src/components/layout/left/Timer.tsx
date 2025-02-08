@@ -13,6 +13,7 @@ import useStatus from "../../../hooks/useStatus";
 import { myCodeAtom } from "@/atoms/codeStore";
 import sendCode from "@/api/code/sendCode";
 import useCode from "@/hooks/useCode";
+import { easeOut, motion } from "framer-motion";
 
 export const Timer = () => {
   const watchWord = useAtomValue(watchWordAtom);
@@ -76,11 +77,38 @@ export const Timer = () => {
   }, [time.remainingTime]);
 
   return status === "answer" ? (
-    <div className={`${styles.time} ${styles[color]}`}>終了</div>
+    <motion.div
+      initial={{ height: "100%" }}
+      animate={{
+        opacity: [0, 1],
+        scale: [0.6, 1],
+      }}
+      transition={{
+        duration: 0.3,
+        delay: 0.2,
+        ease: easeOut,
+        repeatType: "loop",
+      }}
+      className={`${styles.time} ${styles[color]}`}
+    >
+      終了
+    </motion.div>
   ) : (
-    <div className={`${styles.time} ${styles[color]}`}>
+    <motion.div
+      animate={{
+        opacity: [0, 1],
+        scale: [0.6, 1],
+      }}
+      transition={{
+        duration: 0.3,
+        delay: 0.2,
+        ease: easeOut,
+        repeatType: "loop",
+      }}
+      className={`${styles.time} ${styles[color]}`}
+    >
       <span className={styles["time-span"]}>残り時間</span>
       {`${min}:${sec < 10 ? "0" + sec : sec}`}
-    </div>
+    </motion.div>
   );
 };

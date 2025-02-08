@@ -1,4 +1,3 @@
-import { TextButton } from "../elements/TextButton";
 import styles from "../../app/matching/page.module.scss";
 import roomselection from "../../components/layout/RoomSelection.module.scss";
 import { useSetAtom } from "jotai";
@@ -8,6 +7,7 @@ import {
   watchWordAtom,
 } from "@/atoms/matchingStore";
 import { createRoom } from "@/api/matching/roomCreate";
+import { PopCircleButton } from "../elements/PopCircleButton";
 
 export const RoomSelection = () => {
   const setMatchingStatus = useSetAtom(matchingStatusAtom);
@@ -25,12 +25,12 @@ export const RoomSelection = () => {
 
   return (
     <div className={`${styles.contentBox} ${roomselection.buttonBox}`}>
-      <TextButton color="blue" onClick={handleRoomCreate}>
+      <PopCircleButton color="blue" onClick={handleRoomCreate}>
         ルームの作成
-      </TextButton>
-      <TextButton color="green" onClick={handleJoinRoomClick}>
+      </PopCircleButton>
+      <PopCircleButton color="green" onClick={handleJoinRoomClick}>
         ルームの参加
-      </TextButton>
+      </PopCircleButton>
     </div>
   );
 };
