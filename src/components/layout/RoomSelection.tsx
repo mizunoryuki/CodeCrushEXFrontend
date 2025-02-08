@@ -8,6 +8,7 @@ import {
   watchWordAtom,
 } from "@/atoms/matchingStore";
 import { createRoom } from "@/api/matching/roomCreate";
+import { easeOut, motion } from "framer-motion";
 
 export const RoomSelection = () => {
   const setMatchingStatus = useSetAtom(matchingStatusAtom);
