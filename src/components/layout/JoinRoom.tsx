@@ -8,6 +8,7 @@ import useStatus from "@/hooks/useStatus";
 import { useSetAtom } from "jotai";
 import { playerAtom, watchWordAtom } from "@/atoms/matchingStore";
 import { joinRoom } from "@/api/matching/roomJoin";
+import { PopCircleButton } from "../elements/PopCircleButton";
 
 export const JoinRoom = () => {
   const [watchwordToJoin, setWatchwordToJoin] = useState<string>("");
@@ -53,9 +54,9 @@ export const JoinRoom = () => {
           onChange={handleChange}
         />
       </div>
-      <TextButton color="green" onClick={handleClick}>
+      <PopCircleButton color="green" onClick={handleClick}>
         参加
-      </TextButton>
+      </PopCircleButton>
     </div>
   );
 };
