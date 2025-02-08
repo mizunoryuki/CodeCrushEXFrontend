@@ -10,79 +10,77 @@ import SendStatus from "@/api/status/sendStatus";
 import { playerAtom, watchWordAtom } from "@/atoms/matchingStore";
 import { phaseStatusAtom } from "@/atoms/phaseStatusAtom";
 import useStatus from "../../../hooks/useStatus";
-
-// const pages = ["", "", "read", "delete", "fix", "answer"];
+import { myCodeAtom } from "@/atoms/codeStore";
+import sendCode from "@/api/code/sendCode";
+import useCode from "@/hooks/useCode";
 
 export const Timer = () => {
-    const watchWord = useAtomValue(watchWordAtom);
-    const player = useAtomValue(playerAtom);
-    const status = useAtomValue(phaseStatusAtom);
-    const [color, setColor] = useState("green");
-    const [min, setMin] = useState(0);
-    const [sec, setSec] = useState(0);
-    //   const { status, setStatus } = useStatus(watchWord);
-    const timeoutSec = useRef(60);
-    const statusId = useRef(2);
+  const watchWord = useAtomValue(watchWordAtom);
+  const player = useAtomValue(playerAtom);
+  const status = useAtomValue(phaseStatusAtom);
+  const [code, setCode] = useAtom(myCodeAtom);
+  const [color, setColor] = useState("green");
+  const [min, setMin] = useState(0);
+  const [sec, setSec] = useState(0);
+  const timeoutSec = useRef(30);
+  const statusId = useRef(2);
+  useCode(watchWord, player);
 
-    const time = usePhaseTimer(timeoutSec.current, () => {
-        // SendStatus(watchWord, player, statusId.current);
-    });
-    useStatus(watchWord);
-    let count = 0;
+  const time = usePhaseTimer(timeoutSec.current, () => {
+    // SendStatus(watchWord, player, statusId.current);
+  });
+  useStatus(watchWord);
 
-    useEffect(() => {
-        console.log(`!!!!!!!!!!!!!!!!!!!!   ${status || null}`);
-        if (time.isFinish) {
-            console.log(count);
-            count++;
-            if (status === "read") {
-                timeoutSec.current = 60;
-                statusId.current = 2;
-                console.log("read");
-            } else if (status === "delete") {
-                timeoutSec.current = 60;
-                statusId.current = 3;
-                console.log("delete");
-            } else if (status === "fix") {
-                statusId.current = 4;
-                console.log("fix");
-            } else if (status === "answer") {
-                statusId.current = 5;
-                console.log("answer");
-            }
-            console.log(status);
-            SendStatus(watchWord, player, statusId.current);
-            //   router.push(`/${status}`);
-        }
-        console.log(`statusId: ${statusId.current}`);
-    }, [time.isFinish]);
-    //   useEffect(() => {
-    //       if (phaseStatus.status !== "status") redirect(`/${phaseStatus.status}`);
-    //     }, [phaseStatus]);
+  useEffect(() => {
+    console.log(`!!!!!!!!!!!!!!!!!!!!   ${status || null}`);
 
-    useEffect(() => {
-        if (time.remainingTime !== null) {
-            const newMin = toMin(time.remainingTime);
-            const newSec = toSec(time.remainingTime);
-            setMin(newMin);
-            setSec(newSec);
+    if (!time.isFinish) return;
 
-            if (newMin < 1 && newSec < 20) {
-                setColor("red");
-            } else if (newMin < 1) {
-                setColor("yellow");
-            } else {
-                setColor("green");
-            }
-        }
-    }, [time.remainingTime]);
+    if (status == "read") {
+      console.log("readですよ");
+      timeoutSec.current = 20;
+      statusId.current = 2;
+    } else if (status == "delete") {
+      console.log("deleteですよ");
+      timeoutSec.current = 20;
+      statusId.current = 3;
+      console.log(`player: ${player} \n code: ${code}`);
+      sendCode(watchWord, player, code);
+    } else if (status == "fix") {
+      console.log("fixですよ");
+      statusId.current = 4;
+    } else if (status == "answer") {
+      statusId.current = 5;
+    }
 
-    return status === "answer" ? (
-        <div className={`${styles.time} ${styles[color]}`}>終了</div>
-    ) : (
-        <div className={`${styles.time} ${styles[color]}`}>
-            <span className={styles["time-span"]}>残り時間</span>
-            {`${min}:${sec < 10 ? "0" + sec : sec}`}
-        </div>
-    );
+    console.log(`status: ${status}`);
+    SendStatus(watchWord, player, statusId.current);
+    console.log(`statusId: ${statusId.current}`);
+  }, [time.isFinish]);
+
+  useEffect(() => {
+    if (time.remainingTime !== null) {
+      const newMin = toMin(time.remainingTime);
+      const newSec = toSec(time.remainingTime);
+      setMin(newMin);
+      setSec(newSec);
+
+      if (newMin < 1 && newSec < 20) {
+        setColor("red");
+      } else if (newMin < 1) {
+        setColor("yellow");
+      } else {
+        setColor("green");
+      }
+    }
+  }, [time.remainingTime]);
+
+  return status === "answer" ? (
+    <div className={`${styles.time} ${styles[color]}`}>終了</div>
+  ) : (
+    <div className={`${styles.time} ${styles[color]}`}>
+      <span className={styles["time-span"]}>残り時間</span>
+      {`${min}:${sec < 10 ? "0" + sec : sec}`}
+    </div>
+  );
 };

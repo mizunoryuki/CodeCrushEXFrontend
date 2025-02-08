@@ -2,7 +2,6 @@ const SendStatus = (watchword: string, player: string, status: number) => {
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
   const url = `${apiKey}api/${watchword}/status`;
   //プレイヤーのjotaiからとる
-  console.log(`watchworde: ${watchword}, player: ${player}, status: ${status}`);
   const sendData = { player: player, status: status };
 
   fetch(url, {

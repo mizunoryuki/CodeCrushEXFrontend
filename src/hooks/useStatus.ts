@@ -13,14 +13,14 @@ const useStatus = (watchword: string) => {
     useEffect(() => {
         const eventSource = new EventSource(url);
 
-        eventSource.onmessage = (event) => {
-            console.log(`sse: ${event.data}`);
-            setStatus(event.data);
-            if (event.data === "read") redirect(`/${event.data}`);
-            if (event.data === "delete") redirect(`/${event.data}`);
-            if (event.data === "fix") redirect(`/${event.data}`);
-            if (event.data === "answer") redirect(`/${event.data}`);
-        };
+    eventSource.onmessage = (event) => {
+      console.log(`sseからの受け取り: ${event.data}`);
+      setStatus(event.data);
+      if (event.data === "read") redirect(`/${event.data}`);
+      if (event.data === "delete") redirect(`/${event.data}`);
+      if (event.data === "fix") redirect(`/${event.data}`);
+      if (event.data === "answer") redirect(`/${event.data}`);
+    };
 
         // コンポーネントがアンマウントされたときに接続を閉じる
         return () => {
