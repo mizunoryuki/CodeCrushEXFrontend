@@ -5,28 +5,6 @@ type jobIdReq = {
     api_key: string;
     longpoll: boolean;
 };
-type jobIdRes = {
-    id: string;
-    status: string;
-};
-
-type codeDetailsRes = {
-    id: string;
-    language: string;
-    status: string;
-    build_stdout: string | null;
-    build_stderr: string | null;
-    build_exit_code: number | null;
-    build_time: number | null;
-    build_memory: number | null;
-    build_result: string | null;
-    stdout: string | null;
-    stderr: string | null;
-    exit_code: number | null;
-    time: number | null;
-    memory: number | null;
-    result: string | null;
-};
 
 export const getOutput = async (
     source_code: string
@@ -52,7 +30,7 @@ export const getOutput = async (
         });
 
         const initialResult = await response.json();
-        console.log("Initial Response:", initialResult);
+        //console.log("Initial Response:", initialResult);
 
         if (!initialResult.id) {
             return ["ジョブの作成に失敗しました。"];
@@ -65,7 +43,7 @@ export const getOutput = async (
         const pollJobDetails = async (): Promise<string[] | null> => {
             const detailsResponse = await fetch(detailsUrl);
             const jobDetails = await detailsResponse.json();
-            console.log("Job Details Response:", jobDetails);
+            //console.log("Job Details Response:", jobDetails);
 
             if (jobDetails.status === "completed") {
                 if (jobDetails.stdout || jobDetails.stderr) {
