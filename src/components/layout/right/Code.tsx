@@ -18,10 +18,10 @@ export const Code = () => {
     const [code, setCode] = useAtom(myCodeAtom);
     const setoutputText = useSetAtom(outputTextAtom);
     const [isPending, setIsPending] = useState<boolean>(false); //codeを実行中かどうか
-    setCode(questionCode);
     let phaseTextLeft = "自分のコード";
     let phaseTextRight = "仕様書";
     if (phase === "read") {
+        setCode(questionCode);
         phaseTextLeft = "お題";
     } else if (phase === "delete") {
         phaseTextLeft = "相手のコード";
