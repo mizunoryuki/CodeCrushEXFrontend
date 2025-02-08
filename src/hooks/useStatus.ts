@@ -4,14 +4,14 @@ import { useAtom } from "jotai";
 import { phaseStatusAtom } from "@/atoms/phaseStatusAtom";
 
 const useStatus = (watchword: string) => {
-  const apiKey = process.env.NEXT_PUBLIC_API_KEY;
-  // const url = `${apiKey}sse/${watchword}/statusGet`;
-  const url = `${apiKey}sse/${watchword}/statusGet`;
-  // const [status, setStatus] = useState<string>("status");
-  const [status, setStatus] = useAtom(phaseStatusAtom);
+    const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+    // const url = `${apiKey}sse/${watchword}/statusGet`;
+    const url = `${apiKey}sse/${watchword}/statusGet`;
+    // const [status, setStatus] = useState<string>("status");
+    const [status, setStatus] = useAtom(phaseStatusAtom);
 
-  useEffect(() => {
-    const eventSource = new EventSource(url);
+    useEffect(() => {
+        const eventSource = new EventSource(url);
 
     eventSource.onmessage = (event) => {
       console.log(`sseからの受け取り: ${event.data}`);
@@ -22,13 +22,13 @@ const useStatus = (watchword: string) => {
       if (event.data === "answer") redirect(`/${event.data}`);
     };
 
-    // コンポーネントがアンマウントされたときに接続を閉じる
-    return () => {
-      eventSource.close();
-    };
-  }, [url]);
+        // コンポーネントがアンマウントされたときに接続を閉じる
+        return () => {
+            eventSource.close();
+        };
+    }, [url]);
 
-  return { status, setStatus };
+    return { status, setStatus };
 };
 
 export default useStatus;
