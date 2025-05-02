@@ -1,36 +1,19 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Code Crush
+## コンセプト
+初心者向け対戦型プログラミング学習Webアプリ
 
-## Getting Started
+## 概要
 
-First, run the development server:
+このアプリは2人のプレイヤーが同じプログラムを受け取り、一部を削除しそれを交換し、互いに修正し合うプロダクト。このアプリは全部で4つのフェーズを通してプログラミングについて学べる。
+1. コードを読むフェーズ（仕様書とプログラムを見比べプログラムに対する理解を深める）
+2. コードを削除するフェーズ（相手が嫌がるようなプログラムの肝となる場所を削除する）
+3. コードを修正する（虫食いのコードを直してプログラムが動くようにする）
+4. 答え合わせフェーズ（互いになぜその箇所を削除したかなどを交流する）
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 背景・目的
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+このプロダクトは初心者でも楽しくプログラミングを学べる対戦型Webアプリ。私の所属しているサークル内での使用を想定して作成しており、楽しくプログラミングを学びながら、様々な人間と交流できるプロダクトが欲しいという思いから制作が始まった。当初はエラーのないコードを選ぶプログラミング要素の少し入った単純なクイズアプリを想定していましたが、コードを読む力しかつかないし、初心者にはハードルが高すぎるという問題があった。そこで、コードを読む→削除する→修正する→答え合わせ、という4つのフェーズを設計し、より学習効果の高い体験ができるように改良しました。
+4つ全てのフェーズを用意することで、満遍なくプログラミングのスキルを鍛えることができると考えた。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 使用技術
+Next.js,TypeScript,Jotai
