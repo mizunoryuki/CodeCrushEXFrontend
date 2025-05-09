@@ -17,3 +17,6 @@
 
 ## 使用技術
 Next.js,TypeScript,Jotai
+
+## デプロイ
+https://code-crush-ex-frontend.vercel.app/
