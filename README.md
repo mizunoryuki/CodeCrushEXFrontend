@@ -15,8 +15,23 @@
 このプロダクトは初心者でも楽しくプログラミングを学べる対戦型Webアプリ。私の所属しているサークル内での使用を想定して作成しており、楽しくプログラミングを学びながら、様々な人間と交流できるプロダクトが欲しいという思いから制作が始まった。当初はエラーのないコードを選ぶプログラミング要素の少し入った単純なクイズアプリを想定していましたが、コードを読む力しかつかないし、初心者にはハードルが高すぎるという問題があった。そこで、コードを読む→削除する→修正する→答え合わせ、という4つのフェーズを設計し、より学習効果の高い体験ができるように改良しました。
 4つ全てのフェーズを用意することで、満遍なくプログラミングのスキルを鍛えることができると考えた。
 
-## 使用技術
-Next.js,TypeScript,Jotai
+このプロダクトは[CodeCrushFrontend](https://github.com/mizunoryuki/CodeCrushFrontend)をリファクタリングしたものとなっている。
 
-## デプロイ
+## 使用技術
+-  Next.js
+-  TypeScript
+-  Jotai
+-  monaco-editor
+-  react-markdown
+-  react-timer-hook
+-  scss
+
+### 技術選定
+
+## デプロイ先
 https://code-crush-ex-frontend.vercel.app/
+
+## プレゼンテーション資料
+[リファクタリング前のプロジェクト](https://github.com/mizunoryuki/CodeCrushFrontend)の紹介で使用した資料。(プロダクトの詳細について特に変更はなく、資料通り。11枚目の使用技術については変更あり。)
+
+https://www.canva.com/design/DAGYrZJN-1M/OKtah5wq8Iey6c96HRNgFQ/edit?utm_content=DAGYrZJN-1M&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
