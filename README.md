@@ -43,8 +43,3 @@
 
 ## デプロイ先
 https://code-crush-ex-frontend.vercel.app/
-
-## プレゼンテーション資料
-[リファクタリング前のプロジェクト](https://github.com/mizunoryuki/CodeCrushFrontend)の紹介で使用した資料。(プロダクトの詳細について特に変更はなく、資料通り。11枚目の使用技術については変更あり。)
-
-https://www.canva.com/design/DAGYrZJN-1M/OKtah5wq8Iey6c96HRNgFQ/edit?utm_content=DAGYrZJN-1M&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
